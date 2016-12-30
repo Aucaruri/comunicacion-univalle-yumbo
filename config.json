@@ -1,7 +1,0 @@
-{
-	"mailService":"Gmail",
-	"mailUser":"carlos.aucaruri@correounivalle.edu.co",
-	"mailPass":"Dark_Matter1008",
-	"apiUrl": "http://localhost:8080/api",
-	"secret": "REPLACE THIS WITH YOUR OWN SECRET, IT CAN BE ANY STRING"
-}
