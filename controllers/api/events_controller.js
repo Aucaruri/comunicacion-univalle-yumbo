@@ -15,7 +15,7 @@ router.get("/home",getHomeEvents);
 router.get("/slider",getSliderEvents);
 router.get("/user_events",getUserEvents);
 router.get("/category/:id",getCategoryEvents);
-router.get("/tuputopadre",getAndroidEvents);
+router.get("/android_events",getAndroidEvents);
 
 router.route("/:id")
 	.get(getById)
