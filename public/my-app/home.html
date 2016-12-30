@@ -1,0 +1,70 @@
+<div class="mdl-grid">
+	<div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--hide-phone">
+		<div class="mdl-card__title no-p">
+			<i class="material-icons mdl-color-text--grey m-r-5">date_range</i>
+			<h2 class="mdl-card__title-text">
+				Mis Eventos
+			</h2>
+		</div>
+	</div>
+	<div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+		<a href="#/app/crear_evento/1">
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent f-right" id="button">
+				<i class="material-icons">add</i>
+				Crear evento
+			</button>
+		</a>
+	</div>
+</div>
+<main ng-if = "vm.eventos.length == 0">
+	<div class="mdl-grid">
+		<div class="mdl-cell mdl-cell--3-col mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-color--blue-grey-100 mdl-card mdl-shadow--2dp m-t-40">
+			<div class="mdl-card__title" style="text-align:center;">
+				<h2 style="font-size:30px;"> No tienes eventos creados por el momento</h2>
+			</div>
+		</div>
+	</div>
+</main>
+<main ng-if = "vm.eventos.length > 0">
+	<div class="mdl-grid">
+		<div class="mdl-card mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp" ng-repeat="evento in vm.eventos">
+			<figure class="mdl-card__media relative">
+				<img src="{{evento.imagen}}" alt="{{evento.titulo}}">
+				<a href="#/app/modificar_evento/{{evento.evento_id}}" title="Editar evento">
+					<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--accent edit">
+						<i class="material-icons"> create </i>
+					</button>
+				</a>
+				<button title="Eliminar evento" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-color--primary remove" ng-click="vm.openDialog(evento)">
+					<i class="material-icons"> delete </i>
+				</button>
+			</figure>
+			<div class="mdl-card__title">
+				<h2 class="mdl-card__title-text"> {{evento.titulo}} </h2>
+			</div>
+			<div class="mdl-card__supporting-text">
+				<p> Desde: {{evento.fecha_inicio}} </p>
+				<p> Hasta: {{evento.fecha_final}} </p>
+				<p> Lugar: {{evento.lugar}} </p>
+				<p> Categoria: {{evento.nombre_categoria}} </p>
+			</div>
+			<div class="mdl-card__actions mdl-card--border">
+				<a href="#/evento/{{evento.evento_id}}">
+					<button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Ver más
+					</button>
+				</a>
+			</div>
+		</div>
+	</div>
+</main>
+<script type="text/ng-template" id="deleteDialog">
+	<h4 class="mdl-dialog__title">¿Seguro que quiere eliminar el evento?</h4>
+	<div class="mdl-dialog__content">
+		<p>El evento no podra volver a ser visto una vez eliminado.</p>
+	</div>
+	<div class="mdl-dialog__actions">
+		<button type="button" class="mdl-button" ng-click="vm.deleteEvent(); closeThisDialog()">Eliminar</button>
+		<button type="button" class="mdl-button" ng-click="closeThisDialog('cancelar')">Cancelar</button>
+	</div>
+</script>

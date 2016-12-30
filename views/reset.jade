@@ -1,0 +1,49 @@
+doctype html
+html(lang="es")
+	head
+		title Sistema de comunicacion Univalle Yumbo
+		meta(charset="utf-8")
+
+		//links de material design
+		link(href="/public/css/material-icon.css" rel="stylesheet")
+		link(href="/public/css/material.red-indigo.min.css" rel="stylesheet")
+		link(href="/public/css/font-roboto.css" rel="stylesheet" type="text/css")
+		script(defer src="/public/js/material.min.js")
+
+		//scripts de JQuery
+		script(src="/public/js/jquery-3.1.1.min.js")
+		script(src="/public/js/jquery-ui.js")
+		link(rel="stylesheet" href="/public/css/jquery-ui.css")
+		script(src="/public/js/mostrar_imagen.js")
+
+		//links de angular
+		script(src="/public/js/angular.min.js")
+
+		link(href="/public/css/app.css" rel="stylesheet")
+		link(href="/public/css/helpers.css" rel="stylesheet")
+		link(href="/public/css/page.css" rel="stylesheet")
+	body(ng-app)
+		div(class="mdl-layout__container")
+			.mdl-layout.mdl-layout--fixed-header.mdl-js-layout.mdl-color--grey-100
+				.demo-ribbon
+				main(class="demo-main mdl-layout__content")
+					a(href="/"): h2(class="t-center mdl-color-text--white text-shadow") Sistema de comunicación Univalle Yumbo
+					.mdl-grid.m-t-25
+						.mdl-cell.mdl-cell--3-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
+						.mdl-cell.mdl-cell--6-col.mdl-cell--6-col-tablet.mdl-cell--4-col-phone.p-40.mdl-shadow--2dp.mdl-color--white
+							.mdl-card__title.m-b-5.no-p
+								i(class="material-icons mdl-color-text--grey m-r-5") account_circle
+								h2(class="mdl-card__title-text") Cambiar contraseña
+							form(action="/reset/"+token+"" method='POST' name="form" novalidate)
+								div(class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label")
+									label(class="mdl-textfield__label" for="password") Nueva contraseña
+									input(class="mdl-textfield__input" type="password" name="password" autofocus ng-required="true" ng-minlength='8' ng-maxlength='30' ng-model="pw1")
+									span(class="error-message" ng-show="form.password.$error.required && !form.password.$pristine") La contraseña es requerida
+									span(class="error-message" ng-show="form.password.$error.minlength && !form.password.$pristine") La contraseña es muy corta
+									span(class="error-message" ng-show="form.password.$error.maxlength && !form.password.$pristine") La contraseña no debe superar los 30 caracteres
+								div(class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label")
+									label(class="mdl-textfield__label" for="confirm") Confirmar contraseña
+									input(class="mdl-textfield__input" type="password" name="confirm" ng-required="true" ng-model="pw2" ng-pattern="pw1")
+									span(class="error-message" ng-show="form.confirm.$error.required && !form.confirm.$pristine") La confirmación de la contraseña es requerida
+									span(class="error-message" ng-show="form.confirm.$error.pattern") Las contraseñas no coinciden
+								button(ng-disabled="form.$invalid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit") Actualizar contraseña

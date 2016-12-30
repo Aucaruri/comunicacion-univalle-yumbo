@@ -1,0 +1,27 @@
+<div class="mdl-grid m-t-25">
+	<div class="mdl-cell mdl-cell--3-col mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
+	<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone p-40 mdl-shadow--2dp">
+		<div class="mdl-card__title m-b-5 no-p">
+			<h2 class="mdl-card__title-text">
+				<i class="material-icons mdl-color-text--grey m-r-5">account_circle</i>
+				Editar usuario
+			</h2>
+		</div>
+		<div back-img="{{vm.usuario.foto_perfil}}" class="margin-auto circular-grande"></div>
+		<div class="t-center">
+			<span class="f18 bold">{{vm.usuario.correo}}</span>
+		</div>
+		<form ng-submit="vm.updateUser()" name="form">
+			<div class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': vm.usuario.cargo}">
+				<label class="mdl-textfield__label" for="cargo">Cargo</label>
+				<input ng-model="vm.usuario.cargo" type="text" class="mdl-textfield__input" name="cargo" id="cargo" ng-required="true" cargo='{{vm.usuario.cargo}}'>
+				<span class="error-message" ng-show="form.cargo.$error.required && !form.cargo.$pristine">El cargo es requerido</span>
+				<span class="error-message" ng-show="form.cargo.$error.cargo && !form.cargo.$pristine">Solo puede haber un administrador</span>
+			</div>
+			<!--Modificar el estado con botones de opciones-->
+			<button ng-disabled="form.$invalid" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Guardar
+			</button>
+		</form>
+	</div>
+</div>
+<script src="/public/js/update_inputs.js"></script>

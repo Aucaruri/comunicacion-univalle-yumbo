@@ -1,0 +1,238 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+
+/* Esto ayuda a acomodar los porcentajes de los width */
+*,:after,:before {
+	box-sizing:border-box
+}
+
+a{text-decoration: none;}
+.mdl-menu__item a{color:#000;}
+.mdl-button--accent a{color:#FFF;}
+
+.right{
+	right:2em;
+	text-align: right;
+}
+.right-space{
+	margin-right: 1em;
+}
+.large-padding{
+	padding:0.35em 2em;
+}
+.red{
+	background-color: #D51B23;
+}
+
+.logo{
+	min-height: 50px;
+	line-height: 60px;
+	text-align: center;
+}
+/*Clases para el layout*/
+@media screen and (max-width: 660px) {
+    .mdl-layout-title{
+        display: none;
+    }
+    .mdl-layout__header{
+    	max-height: 56px;
+    	padding-top: 0 !important;
+    }
+    .mdl-layout__drawer-button{
+    	padding-top: 0 !important;
+    }
+}
+.mdl-layout__header{
+	background: #D51B23;
+	padding-top: 1em;
+	height: 7em;
+}
+.titulo{
+	font-size: 1.5em;
+	color: #FFF;
+}
+.mdl-layout__drawer .mdl-navigation{
+	padding: 0;
+	margin:0;
+}
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link{
+	padding: 13px 20px;
+}
+.mdl-navigation__link:hover{
+	background-color:#b0bec5 !important;
+}
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link span{
+	color:#FFF;
+	font-size: 14px;
+}
+.mdl-navigation__link .material-icons{
+	margin-right: 10px;
+	font-size: 2em;
+}
+.material-icons .arrow{
+	font-size: 1em !important;
+}
+.mdl-navigation__link img{
+	margin-right: 10px;	
+}
+.mdl-layout__drawer-button{
+	padding-top: 0.5em;
+}
+.mdl-layout__drawer .mdl-navigation li {
+    position: relative;
+    line-height: 0;
+}
+.drawer-separator{
+	height: 2px;
+	background-color: #c0c0c0;
+}
+.slide-toggle {
+  overflow: hidden;
+  transition: all 0.5s; 
+}
+
+/*clases para las fotos circulares*/
+.circular{
+	border-radius: 50%;
+	width: 55px;
+	height:55px;
+	display: block;
+}
+.circular-grande{
+	border-radius: 50%;
+	width: 255px;
+	height:255px;
+	display: block;
+}
+
+/*Clases para los formularios*/
+.mdl-cell form button[type="submit"] {
+	background: #D51B23;
+	border-radius: 1px;
+	color: #fff;
+	font-size: 16px;
+	width: 100% !important;
+	-webkit-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+.mdl-cell form button[type="submit"]:hover {
+	background: #fff;
+	color: #D51B23;
+	font-weight: bold;
+}
+
+/*Clases para las validaciones*/
+.error-message{
+	color: #d50000;
+	position: absolute;
+	font-size: 12px;
+	margin-top: 3px;
+	display: block;
+}
+
+/*Clases para la subida de archivos*/
+.mdl-textfield--file{
+	width: 100%;
+}
+.mdl-textfield--file .mdl-textfield__input{
+	width: calc(100% - 32px);
+	margin-left: 34px;
+}
+.mdl-textfield--file .mdl-button--file {
+	left: 0;
+}
+.mdl-button--file input{
+	cursor: pointer;
+	height: 100%;
+	right: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	width: 400px;
+	z-index: 4;
+}
+
+/*Clases para los mensajes de información*/
+.container{
+	background: #FAC00B;
+	margin-top: 2%;
+	padding: 1% 0;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+.container a{
+	color:#D51B23;
+	float: right;
+	margin-right: 1%; 
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 1.2em;
+	font-weight: bold;
+	line-height: 22px;
+	width: 28px;
+}
+
+/*Contenido principal*/
+.mdl-card__actions .mdl-button--fab{
+	margin-left: 1%;
+	color: #FFF;
+	background-color:  #D51B23;
+	float: right;
+}
+.mdl-card__actions a{
+	margin-top: 2%;
+}
+.mdl-card__media{
+	margin:0;
+	max-width: 100%;
+}
+.mdl-card__media > img {
+	max-width: 100%;
+}
+.mdl-card__media button{
+	position: absolute;
+}
+.mdl-card__media button.edit{
+	color: #FFF;
+	right: 70px;
+	bottom: -25px;
+}
+.mdl-card__media button.remove{
+	color: #FFF;
+	right: 10px;
+	bottom: -25px;
+}
+.mdl-card__actions button{
+	color: #D51B23;
+}
+.fc-center h2{font-size: 30px;}
+.responsive-table {
+	overflow-x: auto;
+}
+
+/*Clases para el footer*/
+/*footer{
+	background: #D51B23;
+	color: #FFF;
+	padding-bottom: 1%;
+	padding-left: 5%;
+	padding-top: 0.1em;
+}
+.mdl-mini-footer{
+	background-color: #6D6565;
+	color:#FFF;
+}
+.mdl-mini-footer__left-section{
+	margin-left: 4em;
+}
+.mdl-mini-footer div ul li{
+	font-size: 12pt;
+}
+.mdl-mini-footer div ul li a{
+	text-decoration: none;
+	color:#FFF;
+}*/

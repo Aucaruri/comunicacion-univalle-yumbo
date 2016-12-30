@@ -1,0 +1,17 @@
+<section class="slider-container">
+	<ul id="slider" class="slider-wrapper">
+		<li ng-class="{'slide-current': eventos.indexOf(evento) === 0}" ng-repeat="evento in eventos">
+			<a href="#/evento/{{evento.evento_id}}">
+				<img src="{{evento.imagen}}" alt="{{evento.titulo}}" id="imagen">
+				<div class="caption">
+					<h2 class="caption-title"> {{evento.titulo}} </h2>
+					<p> {{evento.descripcion}}</p>
+				</div>
+			</a>
+		</li>
+	</ul>
+	<ul id="slider-controls" class="slider-controls">
+		<li ng-class="{'active': eventos.indexOf(evento) === 0}" ng-repeat="evento in eventos">
+		</li>
+	</ul>
+</section>

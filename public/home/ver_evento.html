@@ -1,0 +1,25 @@
+<div class="mdl-grid" ng-if="vm.usuario">
+	<div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--hide-phone"></div>
+	<div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+		<a href="#/app/modificar_evento/{{vm.evento.evento_id}}">
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent f-right" id="button">
+				<i class="material-icons">create</i>
+				Editar evento
+			</button>
+		</a>
+	</div>
+</div>
+<div class="mdl-grid">
+	<div class="mdl-cell mdl-cell--1-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+	<div class="mdl-cell mdl-cell--7-col mdl-cell--5-col-tablet mdl-cell--4-col-phone">
+		<h3>{{vm.evento.titulo}}</h3>
+		<img src="{{vm.evento.imagen}}" alt="{{vm.evento.titulo}}" title="{{vm.evento.titulo}}" class="fullwidth">
+	</div>
+	<div class="mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet m-l-15 mdl-shadow--2dp p-10">
+		<p>Fecha de inicio: {{vm.evento.fecha_inicio}}</p>
+		<p>Fecha de cierre: {{vm.evento.fecha_final}}</p>
+		<p>Lugar: {{vm.evento.lugar}}</p>
+		<p>Categoria: {{vm.evento.nombre_categoria}}</p>
+		<p>{{vm.evento.descripcion}}</p>
+	</div>
+</div>

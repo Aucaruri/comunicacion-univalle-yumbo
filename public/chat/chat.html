@@ -1,0 +1,66 @@
+<div class="mdl-grid mdl-grid--no-spacing" ng-controller="chat_controller as vm">
+	<div class="mdl-cell--4-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+		<div class="p-10">
+			<h3 class="title m-l-10">
+				<i class="material-icons f-left m-r-5">chat</i>
+				Conversaciones
+			</h3>
+			<div class="mdl-shadow--2dp">
+				<ul class="list">
+					<div class="demo-list-action mdl-list" ng-repeat="usuario in vm.usuarios">
+						<div ng-click="vm.getAllMessages(usuario.conversacion_id,usuario)">
+							<div class="mdl-list__item pointer">
+								<span class="mdl-list__item-primary-content no-margin">
+									<div class="circular" ng-class="{'mdl-badge mdl-badge--overlap': usuario.no_leidos>0}" data-badge="{{usuario.no_leidos}}" back-img="{{usuario.foto_perfil}}"></div>
+									<span class="m-l-5">{{usuario.nombres}} {{usuario.apellidos}}</span>
+								</span>
+							</div>
+						</div>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone no-p-l">
+		<div class="p-20 chat-holder">
+			<div class="mdl-card mdl-shadow--2dp fullwidth">
+				<div class="mdl-card__title">
+					<h2 class="mdl-card__title-text" ng-if="!vm.conversacion_nombre">Chat</h2>
+					<h2 class="mdl-card__title-text" ng-if="vm.conversacion_nombre">Chat con {{vm.conversacion_nombre}}</h2>
+				</div>
+				<div class="chatBox p-15">
+					<div ng-if="!vm.receptor" class="mdl-grid">
+						<div class="mdl-cell mdl-cell--3-col mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
+						<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-color--blue-grey-100 mdl-card mdl-shadow--2dp m-t-5">
+							<div class="mdl-card__title" style="text-align:center;">
+								<h2 style="font-size:30px;"> Seleccione una conversación para empezar</h2>
+							</div>
+						</div>
+					</div>
+					<div ng-if="vm.receptor !== 0" class="message-wrapper" ng-repeat="mensaje in vm.mensajes" ng-class="{remitente: vm.usuario.user_id === mensaje.remitente, receptor: vm.usuario.user_id !== mensaje.remitente}">
+						<div class="circular" back-img="{{mensaje.foto_perfil}}"></div>
+						<div class="text-wrapper mdl-shadow--0dp">
+								<span> {{mensaje.mensaje}} </span>
+						</div>
+					</div>
+				</div>
+				<div class="chat-input mdl-card--border">
+					<div class="chat-input-container">
+						<form ng-submit="vm.addMessage()" novalidate>
+							<div class="mdl-textfield mdl-textfield--full-width mdl-js-textfield">
+								<label for="mensaje" class="mdl-textfield__label">Escribir mensaje...</label>
+								<input ng-disabled="!vm.conversacion_nombre" type="text" name="mensaje" id="mensaje" class="mdl-textfield__input" ng-model="vm.mensaje">
+							</div>
+							<input type="hidden" name="conversacion" ng-model="vm.conversacion_id">
+							<div class="send">
+								<button ng-disabled="!vm.conversacion_nombre" type="submit" value="Enviar" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="sendM">
+									<i class="material-icons"> send </i>
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,162 @@
+doctype html
+html(lang="es")
+	head
+		title Sistema de comunicacion Univalle Yumbo
+		meta(charset="utf-8")
+		
+		//links de material design
+		link(href="/public/css/material-icon.css" rel="stylesheet")
+		link(href="/public/css/material.red-indigo.min.css" rel="stylesheet")
+		link(href="/public/css/font-roboto.css" rel="stylesheet" type="text/css")
+		script(defer src="/public/js/material.min.js")
+
+		//css de la carpeta public
+		link(href="/public/css/app.css" rel="stylesheet")
+		link(href="/public/css/helpers.css" rel="stylesheet")
+		link(href="/public/css/chat.css" rel="stylesheet")
+		link(href="/public/css/slider.css" rel="stylesheet")
+		link(href="/public/css/animate.css" rel="stylesheet")
+
+		//scripts de JQuery
+		script(src="/public/js/jquery-3.1.1.min.js")
+		script(src="/public/js/jquery-ui.js")
+		link(rel="stylesheet" href="/public/css/jquery-ui.css")
+
+		script(src="/public/js/slider.js")
+		script(src="/socket.io/socket.io.js")
+
+		//scripts de AngularJS y el calendario
+		script(src="/public/js/angular.min.js")
+		script(src="/public/js/angular-route.min.js")
+		script(src="/public/js/angular-animate.min.js")
+		link(href="/public/css/fullcalendar.css" rel="stylesheet")
+		script(src="/public/js/moment.min.js")
+		script(src="/public/js/calendar.js")
+		script(src="/public/js/fullcalendar.js")
+		script(src="/public/js/gcal.js")
+		script(src="/public/js/desktop-notify.js")
+		script(src="/public/js/angular-web-notification.js")
+
+		link(rel="stylesheet" href="/ng-dialog/css/ngDialog.min.css")
+		link(rel="stylesheet" href="/ng-dialog/css/ngDialog-theme-default.min.css")
+		script(src="/ng-dialog/js/ngDialog.min.js")
+		script(src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js")
+		link(rel="stylesheet" href="/datetimepicker/angular-moment-picker.css")
+		script(src="/datetimepicker/angular-moment-picker.js")
+
+		//scripts de la aplicación
+		script(src="/public/app_angular.js")
+		script(src="/public/toggle.js")
+		script(src="/public/directives/backImg.js")
+		script(src="/public/directives/showImage.js")
+		script(src="/public/directives/slider.js")
+		script(src="/public/directives/updateImage.js")
+		script(src="/public/directives/cargo.js")
+		script(src="/public/app-services/event_service.js")
+		script(src="/public/app-services/chat_service.js")
+		script(src="/public/app-services/user_service.js")
+		script(src="/public/home/home_controller.js")
+		script(src="/public/home/ver_evento_controller.js")
+		script(src="/public/calendario/calendar_controller.js")
+		script(src="/public/eventos_categoria/eventos_categoria_controller.js")
+		script(src="/public/profile/profile_controller.js")
+		script(src="/public/profile/users_controller.js")
+		script(src="/public/profile/editar_usuario.js")
+		script(src="/public/my-app/my_events_controller.js")
+		script(src="/public/my-app/crear_evento_controller.js")
+		script(src="/public/my-app/modificar_evento_controller.js")
+		script(src="/public/chat/chat_controller.js")
+	body(ng-app="app")
+		div(class="mdl-layout__container")
+			div(class="mdl-layout mdl-layout--fixed-drawer mdl-layout--fixed-header mdl-js-layout")
+				header(class="mdl-layout__header")
+					div(class="mdl-layout__header-row")
+						span(class="mdl-layout-title")
+							a(href="#/home"): h1(class="titulo") Sistema de Comunicación Univalle Yumbo
+						div(class="mdl-layout-spacer")
+						button(id="demo-menu-lower-right" title="Opciones de usuario" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon")
+							i(class="material-icons f30") account_circle
+							span(class="mdl-button__ripple-container")
+						ul(class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right mdl-js-ripple-effect--ignore-events" for="demo-menu-lower-right")
+							if usuario
+								a(href="#/app/perfil"): li(class="mdl-menu__item") Ver Perfil
+								a(href="#/app/modificar_perfil"): li(class="mdl-menu__item") Modificar Perfil
+								if(String(usuario.cargo) == "Administrador")
+									a(href="#/app/gestionar_usuarios"): li(class="mdl-menu__item") Gestionar Usuarios
+									a(href="#/app/registrar_usuario"): li(class="mdl-menu__item") Registrar Usuario
+								a(href="/logout"): li(class="mdl-menu__item") Cerrar Sesión
+							else
+								a(href="#/login"): li(class="mdl-menu__item") Iniciar Sesión
+				div(class="mdl-layout__drawer mdl-color--blue-grey-900")
+					header(class="mdl-color--grey-200")
+						//Imagen de Univalle Yumbo
+						div(class="logo m-b-10")
+							a(href="http://yumbo.univalle.edu.co/" title="Universidad del Valle sede Yumbo"): img(src="/public/imagenes/univalleyumbo.png" alt="Universidad del Valle sede Yumbo" width="150px")
+						if usuario
+							div(class="clear")
+								div(class="f-left m-l-30 m-r-10")
+									div(class="circular" back-img="#{usuario.foto_perfil}")
+								div(class="f-left")
+									h4(class="mdl-color-text--black f17 m-t-5 no-m-b") #{usuario.nombres}
+									h5(class="mdl-color-text--grey-600 f12 m-t-5") #{usuario.cargo}
+					ul(class="mdl-navigation")
+						li(class="active")
+							a(href="#/home" title="Inicio" class="mdl-navigation__link")
+								i(class="material-icons mdl-color-text--white") home
+								span Inicio
+						div(class="drawer-separator")
+						li
+							a(ng-click="slideToggle = !slideToggle" class="mdl-navigation__link" href="")
+								div(class="absolute" style="right: 7px;")
+									i(class="material-icons")
+										span(class="mdl-color-text--white arrow" ng-if="!slideToggle") arrow_drop_down
+										span(class="mdl-color-text--white arrow" ng-if="slideToggle") arrow_drop_up
+								i(class="material-icons mdl-color-text--white") event
+								span Eventos
+							div(class="slide-toggle" ng-show="slideToggle")
+								ul(class="mdl-navigation" style="height: auto;")
+									li
+										a(href="#/eventos/categoria/2" title="Eventos académicos" class="mdl-navigation__link")
+											i(class="material-icons mdl-color-text--white") book
+											span Académicos
+									li
+										a(href="#/eventos/categoria/3" title="Eventos deportivos" class="mdl-navigation__link")
+											img(src="/public/icons/soccer2.png" alt="Eventos deportivos" id="soccer")
+											span Deportivos
+									li
+										a(href="#/eventos/categoria/1" title="Eventos extracurriculares" class="mdl-navigation__link")
+											i(class="material-icons mdl-color-text--white") movie_filter
+											span(class="col m10") Extracurriculares
+						div(class="drawer-separator")
+						li
+							a(href="#/calendario" title="Calendario de eventos" class="mdl-navigation__link")
+								i(class="material-icons mdl-color-text--white") event
+								span(class="col m10") Calendario 
+						if usuario
+							div(class="drawer-separator")
+							li
+								a(href="#/app" title="Mis eventos creados" class="mdl-navigation__link")
+									i(class="material-icons mdl-color-text--white") date_range
+									span Mis eventos
+							div(class="drawer-separator")
+							li
+								a(href="#/app/chat" title="Chat de usuarios" class="mdl-navigation__link")
+									i(class="material-icons mdl-color-text--white") chat
+									span Chat
+				main(class="mdl-layout__content")
+					div(id="snackbar-container" class="mdl-js-snackbar mdl-snackbar")
+						div(class="mdl-snackbar__text")
+							button(class="mdl-snackbar__action" ng-hide='true' type="button")
+					div(ng-hide="true" id="req-flash")
+						if messages.error
+							= messages.error
+						if messages.info
+							= messages.info
+						if messages.success
+							= messages.success
+					div(id="evento" ng-hide="true")
+						if evento
+							span #{evento.titulo}/
+							span #{evento.categoria}
+					script(src="/public/js/snackbar.js")
+					div(ng-view)

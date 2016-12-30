@@ -1,0 +1,67 @@
+<div class="mdl-grid m-t-45">
+	<div class="mdl-cell mdl-cell--1-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+	<div class="mdl-cell mdl-cell--10-col mdl-cell--8-col-tablet mdl-cell--8-col-phone">
+		<div class="mdl-card__title m-b-5">
+			<h2 class="mdl-card__title-text">
+				<i class="material-icons mdl-color-text--grey m-r-5">person</i>
+				Gestionar usuarios
+			</h2>
+		</div>
+		<div class="responsive-table">
+			<table class="mdl-data-table mdl-js-data-table">
+				<thead>
+					<tr>
+						<th class="mdl-data-table__cell--non-numeric">Foto perfil</th>
+						<th class="mdl-data-table__cell--non-numeric">Nombres</th>
+						<th class="mdl-data-table__cell--non-numeric">Apellidos</th>
+						<th class="mdl-data-table__cell--non-numeric">Cargo</th>
+						<th class="mdl-data-table__cell--non-numeric">Correo</th>
+						<th class="mdl-data-table__cell--non-numeric">Estado</th>
+						<th class="mdl-data-table__cell--non-numeric">Editar/Bloquear</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="usuario in vm.usuarios">
+						<td back-img="{{usuario.foto_perfil}}"></td>
+						<td class="mdl-data-table__cell--non-numeric">{{usuario.nombres}}</td>
+						<td class="mdl-data-table__cell--non-numeric">{{usuario.apellidos}}</td>
+						<td class="mdl-data-table__cell--non-numeric">{{usuario.cargo}}</td>
+						<td class="mdl-data-table__cell--non-numeric">{{usuario.correo}}</td>
+						<td ng-if="usuario.estado===1">Activo</td>
+						<td ng-if="usuario.estado===0">Inactivo</td>
+						<td>
+							<a href="/#/app/editar_usuario/{{usuario.user_id}}">
+								<button ng-if="usuario.cargo !== 'Administrador'" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-color--accent mdl-color-text--white" title="Editar usuario">
+									<i class="material-icons"> create </i>
+								</button>
+							</a>
+							<button ng-if="usuario.cargo !== 'Administrador' && usuario.estado===1" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-color--primary mdl-color-text--white" ng-click="vm.openDialog(usuario)" title="Bloquear usuario">
+								<i class="material-icons"> lock </i>
+							</button>
+							<button ng-if="usuario.cargo !== 'Administrador' && usuario.estado===0" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-color--primary mdl-color-text--white" ng-click="vm.openDialog(usuario)" title="Desbloquear usuario">
+								<i class="material-icons"> lock_open </i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<script type="text/ng-template" id="bloquearDialog">
+	<h4 class="mdl-dialog__title">¿Seguro que desea bloquear este usuario?</h4>
+	<div class="mdl-dialog__content">
+		<p>Una vez bloqueado podrá desbloquearlo despues.</p>
+	</div>
+	<div class="mdl-dialog__actions">
+		<button type="button" class="mdl-button" ng-click="vm.updateUser(); closeThisDialog()">Bloquear</button>
+		<button type="button" class="mdl-button" ng-click="closeThisDialog('cancelar')">Cancelar</button>
+	</div>
+</script>
+<script type="text/ng-template" id="desbloquearDialog">
+	<h4 class="mdl-dialog__title">¿Seguro que desea desbloquear este usuario?</h4>
+	<div class="mdl-dialog__actions">
+		<button type="button" class="mdl-button" ng-click="vm.updateUser(); closeThisDialog()">Desbloquear</button>
+		<button type="button" class="mdl-button" ng-click="closeThisDialog('cancelar')">Cancelar</button>
+	</div>
+</script>

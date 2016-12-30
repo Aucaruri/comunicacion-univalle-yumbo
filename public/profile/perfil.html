@@ -1,0 +1,20 @@
+<div class="mdl-grid m-t-25">
+	<div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+	<div class="mdl-cell mdl-cell--8-col mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp">
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone t-center">
+				<div class="circular-grande margin-auto" back-img="{{vm.usuario.foto_perfil}}"></div>
+				<h6>{{vm.usuario.nombres}} {{vm.usuario.apellidos}}</h6>
+				<h6>{{vm.usuario.cargo}}</h6>
+				<h6>{{vm.usuario.correo}}</h6>
+			</div>
+			<div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone p-l-20">
+				<h6>Eventos creados: {{vm.eventosCreados}}</h6>
+				<h6>Eventos académicos: {{vm.eventosAcademicos}}</h6>
+				<h6>Eventos deportivos: {{vm.eventosDeportivos}}</h6>
+				<h6>Eventos extracurriculares: {{vm.eventosExtracurriculares}}</h6>
+				<h6>Eventos urgentes: {{vm.eventosUrgentes}}</h6>
+			</div>
+		</div>
+	</div>
+</div>

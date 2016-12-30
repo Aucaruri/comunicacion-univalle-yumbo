@@ -1,0 +1,67 @@
+doctype html
+html(lang="es")
+	head
+		title Sistema de comunicacion Univalle Yumbo
+		meta(charset="utf-8")
+
+		//links de material design
+		link(href="/public/css/material-icon.css" rel="stylesheet")
+		link(href="/public/css/material.red-indigo.min.css" rel="stylesheet")
+		link(href="/public/css/font-roboto.css" rel="stylesheet" type="text/css")
+		script(defer src="/public/js/material.min.js")
+
+		link(href="/public/css/app.css" rel="stylesheet")
+		link(href="/public/css/helpers.css" rel="stylesheet")
+		link(href="/public/css/page.css" rel="stylesheet")
+
+		//scripts de JQuery
+		script(src="/public/js/jquery-3.1.1.min.js")
+		script(src="/public/js/jquery-ui.js")
+		link(rel="stylesheet" href="/public/css/jquery-ui.css")
+
+		//links de angular
+		script(src="/public/js/angular.min.js")
+		script(src="/public/js/app_signup.js")
+		script(src="/public/directives/cargo.js")
+		script(src="/public/directives/showImage.js")
+	body(ng-app='app')
+		div(class="mdl-layout__container")
+			.mdl-layout.mdl-layout--fixed-header.mdl-js-layout.mdl-color--grey-100
+				.demo-ribbon
+				main(class="demo-main mdl-layout__content")
+					a(href="/"): h2(class="t-center mdl-color-text--white text-shadow") Sistema de comunicación Univalle Yumbo
+					.mdl-grid.m-t-25
+						.mdl-cell.mdl-cell--3-col.mdl-cell--1-col-tablet.mdl-cell--hide-phone
+						.mdl-cell.mdl-cell--6-col.mdl-cell--6-col-tablet.mdl-cell--4-col-phone.p-40.mdl-shadow--2dp.mdl-color--white
+							.mdl-card__title.m-b-5.no-p
+								i(class="material-icons mdl-color-text--grey m-r-5") person_add
+								h2(class="mdl-card__title-text") Registrate
+							form(action="/signup/"+token+"" method="POST" enctype="multipart/form-data" name="form" novalidate)
+								div(class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label")
+									input(class="mdl-textfield__input" type="text" name="nombres" id="nombres" ng-required="true" ng-pattern="/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/" ng-model="nombres")
+									label(class="mdl-textfield__label" for="nombres") Nombres
+									span(class="error-message" ng-show="form.nombres.$error.required && !form.nombres.$pristine") El nombre es requerido
+									span(class="error-message" ng-show="form.nombres.$error.pattern && !form.nombres.$pristine") Solo letras y espacios
+								div(class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label")
+									input(class="mdl-textfield__input" type="text" name="apellidos" id="apellidos" ng-required="true" ng-pattern="/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/" ng-model="apellidos")
+									label(class="mdl-textfield__label" for="apellidos") Apellidos
+									span(class="error-message" ng-show="form.apellidos.$error.required && !form.apellidos.$pristine") El apellido es requerido
+									span(class="error-message" ng-show="form.apellidos.$error.pattern && !form.apellidos.$pristine") Solo letras y espacios
+								div(class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label")
+									input(class="mdl-textfield__input" type="text" name="cargo" id="cargo" ng-model="cargo" cargo="cargo" ng-required="true")
+									label(class="mdl-textfield__label" for="cargo") Cargo
+									span(class="error-message" ng-show="form.cargo.$error.cargo && !form.cargo.$pristine") Solo puede haber un administrador
+									span(class="error-message" ng-show="form.cargo.$error.required && !form.cargo.$pristine") El cargo es requerido
+								div(class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label")
+									input(class="mdl-textfield__input" type="password" name="password" id="password" ng-model="pw1" ng-required="true" ng-minlength="8" ng-maxlength="30")
+									label(class="mdl-textfield__label" for="password") Contraseña
+									span(class="error-message" ng-show="form.password.$error.required && !form.password.$pristine") La contraseña es requerida
+									span(class="error-message" ng-show="form.password.$error.minlength && !form.password.$pristine") La contraseña es muy corta
+									span(class="error-message" ng-show="form.password.$error.maxlength && !form.password.$pristine") La contraseña no debe superar los 30 caracteres
+								div(class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label")
+									input(class="mdl-textfield__input" type="password" name="confirm" id="confirm" ng-model="pw2" ng-pattern="pw1" ng-required="true")
+									label(class="mdl-textfield__label" for="password_confirmation") Confirmar Contraseña
+									span(class="error-message" ng-show="form.confirm.$error.required && !form.confirm.$pristine") La confirmación de la contraseña es requerida
+									span(class="error-message" ng-show="form.confirm.$error.pattern") Las contraseñas no coinciden
+								show-image
+								button(ng-disabled="form.$invalid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit") Registrarse

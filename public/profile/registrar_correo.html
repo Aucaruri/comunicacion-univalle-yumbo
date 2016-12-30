@@ -1,0 +1,22 @@
+<div class="mdl-grid m-t-25">
+	<div class="mdl-cell mdl-cell--3-col mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
+	<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone p-40 mdl-shadow--2dp">
+		<div class="mdl-card__title m-b-5 no-p">
+			<h2 class="mdl-card__title-text">
+				<i class="material-icons mdl-color-text--grey m-r-5">person_add</i>
+				Registrar usuario
+			</h2>
+		</div>
+		<form action="/app/registrar" method="POST" name="form">
+			<div class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label">
+				<label class="mdl-textfield__label" for="correo"> Correo del usuario </label>
+				<input type="text" name="correo" id="correo" class="mdl-textfield__input" ng-required="true" ng-pattern="/^\w+([\.-]?\w+)*@correounivalle\.edu\.co$/" ng-model="correo">
+				<span class="error-message" ng-show="form.correo.$error.required && !form.correo.$pristine">El correo es requerido</span>
+				<span class="error-message" ng-show="form.correo.$error.pattern && !form.correo.$pristine">Ingrese un correo válido</span>
+			</div>
+			<button ng-disabled="form.$invalid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">Enviar correo
+			</button>
+		</form>
+	</div>
+</div>
+<script src="/public/js/update_inputs.js"></script>

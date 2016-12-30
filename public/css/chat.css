@@ -1,0 +1,113 @@
+.chat-holder{
+	position: relative;
+}
+.chatBox{
+	overflow-y: auto;
+	background-color: #f1f1f1;
+	background-size: contain;
+	min-height: 360px;
+	max-height: 360px;
+}
+.message-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 20px;
+    padding-top: 5px;
+}
+.message-wrapper .text-wrapper {
+    padding: 10px;
+    min-height: 42px;
+    width: calc(100% - 80px);
+    margin: 0 10.67px;
+    box-shadow: 0 1px 0 0 rgba(50,50,50,.3);
+    border-radius: 2px;
+    font-weight: 300;
+    position: relative;
+    word-wrap: break-word;
+}
+.message-wrapper .text-wrapper:before {
+	content:'';
+	width:0;
+	height:0;
+	border-style:solid;
+}
+.message-wrapper.remitente .circular, .message-wrapper.remitente .text-wrapper {
+	float:right;
+	color:#fff;
+}
+.message-wrapper.remitente .text-wrapper {
+	background-color:#42a5f5;
+}
+.message-wrapper.remitente .text-wrapper:before {
+	border-width:10px 10px 0 0;
+	border-color:#42a5f5 transparent transparent;
+	position:absolute;
+	top:0;
+	right:-9px;
+}
+.message-wrapper.receptor .circular,.message-wrapper.receptor .text-wrapper {
+	float:left;
+	color:#000
+}
+.message-wrapper.receptor .text-wrapper {
+	background:#e0e0e0
+}
+.message-wrapper.receptor .text-wrapper:before {
+	border-width:0 10px 10px 0;
+	border-color:transparent #e0e0e0 transparent transparent;
+	position:absolute;
+	top:0;
+	left:-9px
+}
+.chat-input{
+	background: #fafafa;
+	position: relative;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 0 20px 20px;
+}
+.chat-input-container{
+	height: 50px;
+	position: relative;
+}
+.chat-input-container form{
+	margin-right: 45px;
+}
+.chat-input-container .send{
+	right: 0;
+	bottom: -5px;
+	position: absolute;
+}
+.chat-input-container .send .mdl-button--icon {
+	width:40px;
+	height:40px
+}
+.chat-input-container .send .mdl-button--icon .material-icons {
+	font-size:25px;
+	width:29px
+}
+.title{
+	padding:0;
+	margin-top:23px;
+	margin-bottom:11.5px;
+	line-height: 1.1;
+	font-size:23px;
+}
+ul.list{
+	padding-left: 0;
+}
+@media screen and (max-width: 839px){
+	div.mdl-list{
+		min-height: 87px;
+		max-height: 261px;
+	}
+}
+div.mdl-list{
+	padding: 0;
+	max-height: 440px;
+	overflow-y: auto;
+}
+.mdl-list__item:hover{
+	background-color: #bbdefb;
+}

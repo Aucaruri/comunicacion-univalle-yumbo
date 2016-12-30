@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Index Sistema de comunicacion Univalle Yumbo</title>
+</head>
+<body>
+	<div class="mdl-layout__container">
+		<div class="mdl-layout mdl-layout--fixed-drawer mdl-layout--fixed-header mdl-js-layout">
+			<header class="mdl-layout__header">
+				<div class="mdl-layout__header-row">
+					<span class="mdl-layout-title">
+						<a href="/"> <h1 class="titulo"> Sistema de Comunicación Univalle Yumbo </h1>
+						</a>
+					</span>
+					<div class="mdl-layout-spacer"></div>
+					<button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+						<i class="material-icons"> more_vert </i>
+						<span class="mdl-button__ripple-container"></span>
+					</button>
+					<ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right mdl-js-ripple-effect--ignore-events" for="demo-menu-lower-right">
+						<!--if usuario
+							li(class="mdl-menu__item") Ver Perfil
+							li(class="mdl-menu__item") Modificar Perfil
+							a(href="/logout"): li(class="mdl-menu__item") Cerrar Sesión
+						else
+							a(href="/#login"): li(class="mdl-menu__item") Iniciar Sesión-->
+					</ul>
+				</div>
+			</header>
+			<div class="mdl-layout__drawer mdl-color--blue-grey-900">
+				<header class="mdl-color--grey-200">
+					<div class="logo">
+						<img src="/public/imagenes/univalleyumbo.png" width="100px">
+					</div>
+				</header>
+					<!--if usuario
+						div(class="clear")
+							div(class="f-left m-l-30 m-r-10")
+								div(class="circular" back-img="#{usuario.foto_perfil}")
+							div(class="f-left")
+								h4(class="mdl-color-text-black f17 m-t-5 no-m-b") #{usuario.nombres}
+								h5(class="mdl-color-text-grey-600 f12 m-t-5") #{usuario.cargo}-->
+				<ul class="mdl-navigation">
+					<li class="active">
+						<a href="/" class="mdl-navigation__link">
+							<i class="material-icons mdl-color-text--white"> home</i>
+							<span> Inicio</span>
+						</a>
+					</li>
+					<div class="drawer-separator"></div>
+					<li>
+						<a href="" class="mdl-navigation__link">
+							<i class="material-icons mdl-color-text--white"> book</i>
+							<span> Eventos Académicos</span>
+						</a>
+					</li>
+					<div class="drawer-separator"></div>
+					<li>
+						<a href="" class="mdl-navigation__link">
+							<img src="/public/icons/soccer2.png" id="soccer">
+							<span> Eventos Deportivos</span>
+						</a>
+					</li>
+					<div class="drawer-separator"></div>
+					<li>
+						<a href="" class="mdl-navigation__link">
+							<i class="material-icons mdl-color-text--white"> movie_filter</i>
+							<span class="col m10"> Eventos Extracurriculares</span>
+						</a>
+					</li>
+					<div class="drawer-separator"></div>
+					<li>
+						<a href="#/calendario" class="mdl-navigation__link">
+							<i class="material-icons mdl-color-text--white"> event</i>
+							<span class="col m10"> Calendario</span>
+						</a>
+					</li>
+					<!--if usuario
+						div(class="drawer-separator")
+						li
+							a(href="/app" class="mdl-navigation__link")
+								i(class="material-icons mdl-color-text-white") date_range
+								span Mis eventos
+						div(class="drawer-separator")
+						li
+							a(href="/app/chat" class="mdl-navigation__link")
+								i(class="material-icons mdl-color-text-white") chat
+								span Chat-->
+				</ul>
+			</div>
+			<div id="login" class="modal">
+				<div class="modal-contenido">
+					<a href="#close" class="close"> X</a>
+					<form class="form-session" action="/login" method="POST">
+						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							<input class="mdl-textfield__input" type="text" id="username" name="username">
+							<label class="mdl-textfield__label" for="username"> Correo Institucional</label>
+						</div>
+						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+							<input class="mdl-textfield__input" type="password" name="password" id="password">
+							<label class="mdl-textfield__label" for="password"> Contraseña</label>
+						</div>
+						<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="buttonIngresar" type="submit"> Ingresar
+						</button>
+						<div class="center">
+							<a href="/forgot" id="olvidoContrasena"> Olvido su contraseña?</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			<main class="mdl-layout__content">
+				<div ng-view></div>
+			</main>
+		</div>
+	</div>
+</body>
+</html>

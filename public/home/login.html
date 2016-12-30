@@ -1,0 +1,29 @@
+<div class="mdl-grid m-t-25">
+	<div class="mdl-cell mdl-cell--3-col mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
+	<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone p-40 mdl-shadow--2dp">
+		<div class="mdl-card__title m-b-5 no-p">
+			<h2 class="mdl-card__title-text">
+				<i class="material-icons mdl-color-text--grey m-r-5">account_circle</i>
+				Iniciar sesión
+			</h2>
+		</div>
+		<form action="/login" method="POST" name="form" novalidate>
+			<div class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label is-upgraded">
+				<input class="mdl-textfield__input" type="text" id="username" name="username" ng-pattern="/^\w+([\.-]?\w+)*@correounivalle\.edu\.co$/" required ng-model="username">
+				<label class="mdl-textfield__label" for="username"> Correo Institucional</label>
+				<span ng-show="form.username.$error.required && !form.username.$pristine" class="error-message">El correo es requerido</span>
+				<span ng-show="form.username.$error.pattern && !form.username.$pristine" class="error-message">Ingrese un correo válido</span>
+			</div>
+			<div class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label">
+				<input class="mdl-textfield__input" type="password" name="password" id="password" required ng-model="password">
+				<label class="mdl-textfield__label" for="password"> Contraseña</label>
+				<span ng-show="form.password.$error.required && !form.password.$pristine" class="error-message">La contraseña es requerida</span>
+			</div>
+			<button ng-disabled="form.$invalid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">Ingresar
+			</button>
+			<div class="m-t-10">
+				<a href="/#/forgot" id="olvidoContrasena"> ¿Olvidó su contraseña?</a>
+			</div>
+		</form>
+	</div>
+</div>

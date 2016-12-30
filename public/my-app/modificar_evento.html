@@ -1,0 +1,51 @@
+<div class="mdl-grid">
+	<div class="mdl-cell mdl-cell--3-col mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
+	<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone p-40 mdl-shadow--2dp">
+		<div class="mdl-card__title no-p">
+			<h2 class="mdl-card__title-text">
+				<i class="material-icons mdl-color-text--grey m-r-5">event_note</i>
+				Modificar evento
+			</h2>
+		</div>
+		<form action="{{vm.action}}" method="POST" enctype="multipart/form-data" name="form" novalidate>
+			<div class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': vm.evento.titulo}">
+				<label class="mdl-textfield__label" for="titulo"> Título del evento </label>
+				<input ng-model="vm.evento.titulo" type="text" name="titulo" id="titulo" class="mdl-textfield__input" ng-required="true">
+				<span class="error-message" ng-show="form.titulo.$error.required && !form.titulo.$pristine">El título es requerido</span>
+			</div>
+			<div class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': vm.evento.fecha_inicio}">
+				<label for="fecha_inicial" class="mdl-textfield__label"> Desde </label>
+				<input moment-picker="vm.evento.fecha_inicio" type="text" name="fecha_inicial" id="datepicker" class="mdl-textfield__input" ng-model="vm.evento.fecha_inicio"  ng-required="true" ng-pattern="/^[0-9]{4}\/[0-9]{2}\/[0-9]{1,2} [0-9]{2}\:[0-9]{2}$/" readonly>
+				<span class="error-message" ng-show="form.fecha_inicial.$error.required && !form.fecha_inicial.$prisitine">La fecha de inicio es requerida</span>
+				<span class="error-message" ng-show="form.fecha_inicial.$error.pattern && !form.fecha_inicial.$prisitine">La fecha esta mal escrita YYYY/MM/DD HH:mm</span>
+			</div>
+			<div class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': vm.evento.fecha_final}">
+				<label for="fecha_final" class="mdl-textfield__label"> Hasta </label>
+				<input moment-picker="vm.evento.fecha_final" type="text" name="fecha_final" id="datepicker2" class="mdl-textfield__input" ng-model="vm.evento.fecha_final" ng-required="true" ng-pattern="/^[0-9]{4}\/[0-9]{2}\/[0-9]{1,2} [0-9]{2}\:[0-9]{2}$/" readonly>
+				<span class="error-message" ng-show="form.fecha_final.$error.required && !form.fecha_final.$pristine">La fecha final es requerida</span>
+				<span class="error-message" ng-show="form.fecha_final.$error.pattern && !form.fecha_final.$prisitine">La fecha esta mal escrita YYYY/MM/DD HH:mm</span>
+			</div>
+			<div class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': vm.evento.lugar}">
+				<label class="mdl-textfield__label" for="lugar"> Lugar </label>
+				<input type="text" name="lugar" id="lugar" class="mdl-textfield__input" ng-model="vm.evento.lugar" ng-required="true">
+				<span class="error-message" ng-show="form.lugar.$error.required && !form.lugar.$pristine">El lugar es requerido</span>
+			</div>
+			<div class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': vm.evento.categoria}">
+				<label for="categoria" class="mdl-textfield__label"> Categoria </label>
+				<select name="categoria" type="checkbox" ng-model="vm.evento.categoria" id="categoria" class="mdl-textfield__input">
+					<option value=1> Extracurricular</option>
+					<option value=2> Académico</option>
+					<option value=3> Deportivo</option>
+					<option value=4> Urgente</option>
+				</select>
+			</div>
+			<div class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': vm.evento.descripcion}">
+				<label for="descripcion" class="mdl-textfield__label"> Descripción </label>
+				<input type="textarea" name="descripcion" id="descripcion" class="mdl-textfield__input" ng-model="vm.evento.descripcion">
+			</div>
+			<update-image type='evento'></update-image>
+			<button ng-disabled="form.$invalid" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Actualizar
+			</button>
+		</form>
+	</div>
+</div>

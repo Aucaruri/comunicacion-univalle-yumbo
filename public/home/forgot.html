@@ -1,0 +1,21 @@
+<div class="mdl-grid m-t-25">
+	<div class="mdl-cell mdl-cell--3-col mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
+	<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone p-40 mdl-shadow--2dp">
+		<div class="mdl-card__title m-b-5 no-p">
+			<h2 class="mdl-card__title-text">
+				<i class="material-icons mdl-color-text--grey m-r-5">account_circle</i>
+				Restaurar contraseña
+			</h2>
+		</div>
+		<form action="/forgot" method='POST' name="form" novalidate>
+			<div class="mdl-textfield mdl-textfield--full-width mdl-js-textfield mdl-textfield--floating-label">
+				<label class="mdl-textfield__label" for="email"> Correo</label>
+				<input class="mdl-textfield__input" type="text" name="email" ng-pattern="/^\w+([\.-]?\w+)*@correounivalle\.edu\.co$/" ng-required="true" ng-model="email">
+				<span ng-show="form.email.$error.required && !form.email.$pristine" class="error-message">El correo es requerido</span>
+				<span ng-show="form.email.$error.pattern && !form.email.$pristine" class="error-message">Ingrese un correo válido</span>
+			</div>
+			<button ng-disabled="form.$invalid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">Cambiar contraseña
+			</button>
+		</form>
+	</div>
+</div>

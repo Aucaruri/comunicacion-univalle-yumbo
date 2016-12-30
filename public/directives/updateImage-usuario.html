@@ -1,0 +1,8 @@
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+	<input class="mdl-textfield__input" type="text" placeholder="Imagen" ng-model="vm.nombreImagen" id="uploadFile" readonly name="imagen">
+	<div class="mdl-button mdl-button--accent mdl-button--icon mdl-button--file">
+		<i class="material-icons"> add_a_photo </i>
+		<input type="file" name="archivo" id="archivo" accept="image/*">
+	</div>
+</div>
+<img class="m-b-5" src="{{vm.usuario.foto_perfil}}" alt="{{vm.nombreImagen}}" id="img_destino" title="{{vm.nombreImagen}}" width="100%">

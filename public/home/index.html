@@ -1,0 +1,35 @@
+<div ng-show="vm.eventosSlider.length > 0">
+	<slider eventos="vm.eventosSlider"></slider>
+</div>
+<div ng-show = "vm.eventos.length == 0">
+	<div class="mdl-grid">
+		<div class="mdl-cell mdl-cell--3-col mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-color--blue-grey-100 mdl-card mdl-shadow--2dp m-t-40">
+			<div class="mdl-card__title" style="text-align:center;">
+				<h2 ng-if="vm.eventosSlider.length > 0" style="font-size:30px;"> No hay otros eventos creados por el momento</h2>
+				<h2 ng-if="vm.eventosSlider.length === 0" style="font-size:30px;"> No hay eventos creados por el momento</h2>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="mdl-grid">
+	<div class="mdl-card center mdl-cell mdl-cell--4-col mdl-cell--6-col-tablet mdl-shadow--2dp" ng-repeat="evento in vm.eventos">
+		<figure class="mdl-card__media">
+			<img src="{{evento.imagen}}" alt="{{evento.titulo}}">
+		</figure>
+		<div class="mdl-card__title">
+			<h2 class="mdl-card__title-text"> {{evento.titulo}} </h2>
+		</div>
+		<div class="mdl-card__supporting-text">
+			<p> {{evento.descripcion}} </p>
+			<p> {{evento.fecha_inicio}} </p>
+			<p> {{evento.lugar}} </p>
+		</div>
+		<div class="mdl-card__actions mdl-card--border">
+			<a href="#/evento/{{evento.evento_id}}">
+				<button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Ver más
+				</button>
+			</a>
+		</div>
+	</div>
+</div>
