@@ -2,6 +2,6 @@
 	"mailService":"Gmail",
 	"mailUser":"comunicacionuvyumbo@gmail.com",
 	"mailPass":"c0mun1c4c10n_UV",
-	"apiUrl": "http://localhost:8080/api",
+	"apiUrl": "https://comunicacionuvyumbo.herokuapp.com/api",
 	"secret": "REPLACE THIS WITH YOUR OWN SECRET, IT CAN BE ANY STRING"
 }
