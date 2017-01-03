@@ -54,7 +54,7 @@ realtime(server);
 app.set('port', process.env.PORT || 8080);
 app.set("view engine","jade");
 app.use("/public",express.static('public'));
-app.use('/datetimepicker', express.static(path.join(__dirname,'node_modules/angular-moment-picker-master')));
+app.use('/datetimepicker', express.static(path.join(__dirname,'node_modules/angularjs-datetime-picker')));
 app.use('/ng-dialog', express.static(path.join(__dirname,'node_modules/ng-dialog')));
 app.use(logger("dev"));
 app.use(bodyParser.json());
