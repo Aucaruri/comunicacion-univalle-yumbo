@@ -13,8 +13,8 @@
   "author": "Cocso",
   "license": "ISC",
   "dependencies": {
+    "angular-moment-picker": "^0.9.1",
     "angular-web-notification": "^1.0.21",
-    "angularjs-datetime-picker": "^0.1.16",
     "async": "^2.0.1",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.3.0",
