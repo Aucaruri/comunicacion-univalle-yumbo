@@ -11,7 +11,7 @@ var fs=require("fs");
 var transport = nodemailer.createTransport({
 	service: config.mailService,
 	auth:{
-		user:config.mailUser,
+		user: config.mailUser,
 		pass: config.mailPass
 	}
 });
@@ -151,7 +151,7 @@ router.route("/registrar")
 			},function(token,user,done){
 				var mailOptions={
 					to: user.correo,
-					from: 'carlos.aucaruri@correounivalle.edu.co',
+					from: config.mailUser,
 					subject: 'Registrarse al sistema',
 					text: 'Para registrarte en la pagina deberas llenar el siguiente formulario \n\n' +
 					'Haz clic en el siguiente link, o copia y pegalo en tu navegador para completar el proceso:\n\n' +
