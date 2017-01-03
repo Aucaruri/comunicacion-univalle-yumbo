@@ -24,8 +24,6 @@ router.use('/', function(req, res, next){
 });
 
 router.get("/",function(req,res){
-	/*console.log("AQUI PRIMERO");
-	console.log(req.app.locals);*/
 	if(req.app.locals){
 		res.render("layout",{usuario:req.user, evento:req.app.locals});
 	}else{
@@ -140,8 +138,7 @@ router.route("/registrar")
 				});
 			},
 			function(token,done){
-				//var tokenExpires = Date.now() + 21600000 //6 horas activo
-				var tokenExpires = Date.now() + 64800000 //18 horas activo
+				var tokenExpires = Date.now() + 32400000 //9 horas activo
 				user={
 					correo:req.body.correo,
 					registryPasswordToken:token,
@@ -159,7 +156,7 @@ router.route("/registrar")
 					text: 'Para registrarte en la pagina deberas llenar el siguiente formulario \n\n' +
 					'Haz clic en el siguiente link, o copia y pegalo en tu navegador para completar el proceso:\n\n' +
 					'http://' + req.headers.host + '/signup/' + token + '\n\n' +
-					'El link caducará dentro de 6 horas le recomendamos realizar el proceso dentro de este periodo de tiempo\n'+
+					'El link caducará dentro de 9 horas le recomendamos realizar el proceso dentro de este periodo de tiempo\n'+
 					'Si tu no pediste esto, por favor ignora este correo.\n'
 				}
 				transport.sendMail(mailOptions,function(err,info){

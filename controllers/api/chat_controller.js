@@ -5,7 +5,7 @@ var connection = require ("../../db");
 //Importar el controlador del chat
 var chat = require("./chat");
 
-router.get("/",getAllConversations)
+router.get("/",getAllConversations);
 router.get("/:id",getAllMessages);
 router.post("/:id",addMessage);
 router.put("/:id",readMessages);

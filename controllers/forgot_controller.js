@@ -29,8 +29,7 @@ router.post('/',function(req, res, next){
 					return res.redirect('/forgot');
 				}
 				user[0].registryPasswordToken = token;
-				//user[0].tokenExpires = Date.now() + 3600000; // 1 hora activo
-				user[0].tokenExpires = Date.now() + 64800000; // 18 hora activo
+				user[0].tokenExpires = Date.now() + 7200000; // 2 horas activo
 				connection.query("update usuarios set registryPasswordToken=?, tokenExpires=? where user_id=?",
 				[user[0].registryPasswordToken,user[0].tokenExpires,user[0].user_id],
 				function(err){
@@ -46,7 +45,7 @@ router.post('/',function(req, res, next){
 				text: 'Estas recibiendo este correo porque tu (o alguien más) ha pedido cambiar la contraseña de tu cuenta.\n\n' +
 				'Haz clic en el siguiente link, o copia y pegalo en tu navegador para completar el proceso:\n\n' +
 				'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-				'El link caducará dentro de 1 hora le recomendamos realizar el proceso dentro de este periodo de tiempo\n'+
+				'El link caducará dentro de 2 horas le recomendamos realizar el proceso dentro de este periodo de tiempo\n'+
 				'Si tu no pediste esto, por favor ignora este correo y tu contraseña se mantendrá sin cambios.\n'
 			}
 			transport.sendMail(mailOptions,function(err,info){
