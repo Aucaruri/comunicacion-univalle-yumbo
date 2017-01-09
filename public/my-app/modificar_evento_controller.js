@@ -17,6 +17,8 @@
 			EventService.getById($routeParams.id)
     			.then(function(evento){
     				vm.evento = evento;
+                    console.log(vm.evento.fecha_inicio);
+                    console.log(vm.evento.fecha_final);
                     vm.nombreImagen = vm.evento.imagen.split("/")[4];
                     vm.action = "/app/eventos/"+vm.evento.evento_id+"?_method=PUT";
     			})

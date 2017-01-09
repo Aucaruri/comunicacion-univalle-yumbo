@@ -298,13 +298,29 @@ exports.deleteEvent=function(id){
 exports.getAndroidEvents=function(){
 	var deferred = Q.defer();
 
-	var query = "SELECT evento_id, titulo, descripcion, fecha_inicio "+
+	var query = "SELECT evento_id, imagen, titulo, descripcion, fecha_inicio "+
 				"FROM eventos "+
 				"WHERE estado=1 ORDER BY fecha_inicio";
 	connection.query(query,
 		function(err,eventos){
 			if (err) deferred.reject(err.name + ': ' + err.message);
 			if(eventos) {
+				for (var i = eventos.length - 1; i >= 0; i--) {
+					if(eventos[i].fecha_inicio.toString() !== '0000-00-00 00:00:00'){
+						var ano = eventos[i].fecha_inicio.getYear()+1900;
+						var mes = eventos[i].fecha_inicio.getMonth()+1;
+						var dia = eventos[i].fecha_inicio.getDate();
+						var hora = eventos[i].fecha_inicio.getHours();
+						var minutos = eventos[i].fecha_inicio.getMinutes();
+						var segundos = eventos[i].fecha_inicio.getSeconds();
+						if(mes<10){mes='0'+mes}
+						if(dia<10){dia='0'+dia}
+						if(hora<10){hora='0'+hora}
+						if(minutos<10){minutos='0'+minutos}
+						if(segundos<10){segundos='0'+segundos}
+						eventos[i].fecha_inicio = ano+'-'+mes+'-'+dia+' '+hora+':'+minutos+':'+segundos;
+					}
+				};
 				deferred.resolve(eventos);
 			} else {
 				deferred.resolve();
