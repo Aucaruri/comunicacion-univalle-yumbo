@@ -298,8 +298,8 @@ exports.deleteEvent=function(id){
 exports.getAndroidEvents=function(){
 	var deferred = Q.defer();
 
-	var query = "SELECT evento_id, titulo, descripcion, fecha_inicio"+
-				"FROM eventos"+
+	var query = "SELECT evento_id, titulo, descripcion, fecha_inicio "+
+				"FROM eventos "+
 				"WHERE estado=1 ORDER BY fecha_inicio";
 	connection.query(query,
 		function(err,eventos){

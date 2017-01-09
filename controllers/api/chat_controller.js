@@ -17,15 +17,12 @@ function getAllConversations(req,res){
 	var usuarios = [];
 	var query = "SELECT a.conversacion_id," +
 				"b.user_id as user_1, b.nombres as nombres_1, b.apellidos as apellidos_1, b.foto_perfil as foto_1," +
-				"c.user_id as user_2, c.nombres as nombres_2, c.apellidos as apellidos_2, c.foto_perfil as foto_2," +
-				"sum(m.leido) as no_leidos " +
+				"c.user_id as user_2, c.nombres as nombres_2, c.apellidos as apellidos_2, c.foto_perfil as foto_2 " +
 				"FROM conversaciones a " +
 				"INNER JOIN usuarios b ON a.user_1_id=b.user_id " +
 				"INNER JOIN usuarios c ON a.user_2_id=c.user_id " +
-				"INNER JOIN mensajes m ON m.conversacion_id=a.conversacion_id " +
 				"WHERE user_1_id=? OR user_2_id=? " +
-				"GROUP BY a.conversacion_id " +
-				"ORDER BY a.conversacion_id";
+				"GROUP BY a.conversacion_id ";
 	connection.query(query,[req.user.user_id,req.user.user_id],
 		function(err,conversaciones){
 			if(err) res.sendStatus(404);
@@ -52,6 +49,7 @@ function getAllConversations(req,res){
 					usuarios.push(usuario);
 				}
 			};
+
 			res.send(usuarios);
 		});
 }

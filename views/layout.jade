@@ -73,9 +73,10 @@ html(lang="es")
 						span(class="mdl-layout-title")
 							a(href="#/home"): h1(class="titulo") Sistema de Comunicación Univalle Yumbo
 						div(class="mdl-layout-spacer")
+						//Menu de usuario
 						button(id="demo-menu-lower-right" title="Opciones de usuario" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon")
 							i(class="material-icons f30") account_circle
-							span(class="mdl-button__ripple-container")
+							span(class="mdl-button__ripple-container f30")
 						ul(class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right mdl-js-ripple-effect--ignore-events" for="demo-menu-lower-right")
 							if usuario
 								a(href="#/app/perfil"): li(class="mdl-menu__item") Ver Perfil
@@ -98,6 +99,7 @@ html(lang="es")
 								div(class="f-left")
 									h4(class="mdl-color-text--black f17 m-t-5 no-m-b") #{usuario.nombres}
 									h5(class="mdl-color-text--grey-600 f12 m-t-5") #{usuario.cargo}
+					//Menu principal
 					ul(class="mdl-navigation")
 						li(class="active")
 							a(href="#/home" title="Inicio" class="mdl-navigation__link")
@@ -142,6 +144,15 @@ html(lang="es")
 								a(href="#/app/chat" title="Chat de usuarios" class="mdl-navigation__link")
 									i(class="material-icons mdl-color-text--white") chat
 									span Chat
+						div(class="drawer-separator")
+						button(id="demo-menu-top-left" class="mdl-button mdl-js-button mdl-button")
+							span Desarrollado por COCSO
+						div(class="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect menu-footer" data-mdl-for="demo-menu-top-left")
+							p Desarrolladores:
+							p María Angélica Trujillo
+							p Francy Liley Ruales
+							p Juan David Morán
+							p Carlos Andrés Aucaruri
 				main(class="mdl-layout__content")
 					div(id="snackbar-container" class="mdl-js-snackbar mdl-snackbar")
 						div(class="mdl-snackbar__text")

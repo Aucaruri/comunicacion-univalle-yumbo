@@ -89,8 +89,17 @@ a{text-decoration: none;}
 	background-color: #c0c0c0;
 }
 .slide-toggle {
-  overflow: hidden;
-  transition: all 0.5s; 
+	overflow: hidden;
+	transition: all 0.5s; 
+}
+.menu-footer{
+	color: #000;
+	position: absolute;
+	bottom: 15px;
+}
+.menu-footer p{
+	margin: 0;
+	padding: 0;
 }
 
 /*clases para las fotos circulares*/

@@ -83,9 +83,9 @@ CONSTRAINT `conversacion_fk`
 	ON DELETE NO ACTION
 	ON UPDATE NO ACTION);
 
-INSERT INTO `intranet`.`categorias` (`nombre`) VALUES ("Extracurricular");
-INSERT INTO `intranet`.`categorias` (`nombre`) VALUES ("Académico");
-INSERT INTO `intranet`.`categorias` (`nombre`) VALUES ("Deportivo");
-INSERT INTO `intranet`.`categorias` (`nombre`) VALUES ("Urgente");
-INSERT INTO `intranet`.`categorias` (`nombre`) VALUES ("Privado");
+INSERT INTO `intranet`.`categorias` (`categoria_id`,`nombre`) VALUES (1,"Extracurricular");
+INSERT INTO `intranet`.`categorias` (`categoria_id`,`nombre`) VALUES (2,"Académico");
+INSERT INTO `intranet`.`categorias` (`categoria_id`,`nombre`) VALUES (3,"Deportivo");
+INSERT INTO `intranet`.`categorias` (`categoria_id`,`nombre`) VALUES (4,"Urgente");
+INSERT INTO `intranet`.`categorias` (`categoria_id`,`nombre`) VALUES (5,"Privado");
 INSERT INTO `intranet`.`usuarios` (`nombres`,`apellidos`,`correo`,`cargo`,`estado`,`contraseña`,`foto_perfil`) VALUES ("Jhon","Doe","jhon.doe@correounivalle.edu.co","Administrador","1","$2a$05$ZPWxiG2gZL3dcHctrpN15.FO1PAtbDP3Al6dj8tFY4id18AIwvtDq","/public/imagenes/profile/default.jpeg");
