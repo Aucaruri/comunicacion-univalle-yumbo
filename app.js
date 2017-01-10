@@ -46,7 +46,7 @@ passport.deserializeUser(function(id, done){
   });
 });
 
-var app=express();
+var app = express();
 var server = require("http").createServer(app);
 var realtime = require("./realtime");
 realtime(server);

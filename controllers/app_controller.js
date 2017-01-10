@@ -7,7 +7,15 @@ var request = require("request");
 var config = require("../config.json");
 var nodemailer = require("nodemailer");
 var flash = require('express-flash');
-var fs=require("fs");
+var fs = require("fs");
+var multer = require('multer');
+var uploads = multer({ dest : '/uploads' });
+var cloudinary = require('cloudinary');
+cloudinary.config({
+	cloud_name: 'hqhfidg5a',
+	api_key: '466377161181572',
+	api_secret: 'mjw1kKc2YHo8cDFah0ymcm2w7sI'
+});
 var transport = nodemailer.createTransport({
 	service: config.mailService,
 	auth:{
@@ -32,18 +40,21 @@ router.get("/",function(req,res){
 });
 
 //Crear un evento
-router.route("/eventos")
-	.post(function(req,res){
-		if(req.body.archivo.name != ''){
-			var ruta = "public/imagenes/eventos/"+req.body.archivo.name;
-			var route = "/public/imagenes/eventos/"+req.body.archivo.name;
-			fs.rename(req.body.archivo.path, ruta, function(err){
-				if(err) console.log(err);
-			});
-		}else{
-			var route = "/public/imagenes/eventos/default.png";
-		}
+router.post("/eventos", function(req,res){
+	if(req.body.archivo.name != ''){
+		/*var ruta = "public/imagenes/eventos/"+req.body.archivo.name;
+		fs.rename(req.body.archivo.path, ruta, function(err){
+			if(err) console.log(err);
+		});*/
+		cloudinary.uploader.upload(req.body.archivo.path, function(result) {
+			guardar(result.url);
+		}, { public_id: req.body.titulo } );
+	}else{
+		var route = "/public/imagenes/eventos/default.png";
+		guardar(route);
+	}
 
+	function guardar(route){
 		var evento={
 			titulo:req.body.titulo,
 			fecha_inicio:req.body.fecha_inicial,
@@ -84,40 +95,46 @@ router.route("/eventos")
 			req.flash('success','¡Evento creado!');
 			return res.redirect('/app/#/app');
 		});
-	});
+	}
+});
 
 //Actualizar un evento por su ID
 router.route("/eventos/:id")
 	.put(function(req,res) {
 		if(req.body.archivo.name != ''){
-			var ruta = "public/imagenes/eventos/"+req.body.archivo.name;
+			/*var ruta = "public/imagenes/eventos/"+req.body.archivo.name;
 			var route = "/public/imagenes/eventos/"+req.body.archivo.name;
 			fs.rename(req.body.archivo.path, ruta, function(err){
 				if(err) console.log(err);
-			});
+			});*/
+			cloudinary.uploader.upload(req.body.archivo.path, function(result) {
+				actualizar(result.url);
+			}, { public_id: req.body.titulo } );
 		}else{
 			var route = "/public/imagenes/eventos/"+req.body.imagen;
+			actualizar(route);
 		}
-
-		var evento={
-			titulo:req.body.titulo,
-			fecha_inicio:req.body.fecha_inicial,
-			fecha_final:req.body.fecha_final,
-			descripcion:req.body.descripcion,
-			lugar:req.body.lugar,
-			categoria:req.body.categoria,
-			usuario:req.user.user_id,
-			imagen:route
-		};
-		connection.query("UPDATE eventos SET ? WHERE evento_id=?",[evento,req.params.id],function(err){
-			if(err) {
-				console.log(err);
-				req.flash('error',"No se pudo modificar el evento");
+		function actualizar(route){
+			var evento={
+				titulo:req.body.titulo,
+				fecha_inicio:req.body.fecha_inicial,
+				fecha_final:req.body.fecha_final,
+				descripcion:req.body.descripcion,
+				lugar:req.body.lugar,
+				categoria:req.body.categoria,
+				usuario:req.user.user_id,
+				imagen:route
+			};
+			connection.query("UPDATE eventos SET ? WHERE evento_id=?",[evento,req.params.id],function(err){
+				if(err) {
+					console.log(err);
+					req.flash('error',"No se pudo modificar el evento");
+					return res.redirect('/app/#/app');
+				}
+				req.flash('success','¡Evento modificado!');
 				return res.redirect('/app/#/app');
-			}
-			req.flash('success','¡Evento modificado!');
-			return res.redirect('/app/#/app');
-		});
+			});
+		};
 	});
 
 //El administrador registra un correo y manda un mensaje al usuario para que se registre
