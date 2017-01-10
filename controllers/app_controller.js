@@ -8,8 +8,6 @@ var config = require("../config.json");
 var nodemailer = require("nodemailer");
 var flash = require('express-flash');
 var fs = require("fs");
-var multer = require('multer');
-var uploads = multer({ dest : '/uploads' });
 var cloudinary = require('cloudinary');
 cloudinary.config({
 	cloud_name: 'hqhfidg5a',

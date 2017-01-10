@@ -31,7 +31,6 @@
     "jsonwebtoken": "^7.1.9",
     "method-override": "^2.3.6",
     "morgan": "^1.7.0",
-    "multer": "^1.2.1",
     "mysql": "^2.11.1",
     "ng-dialog": "^0.6.4",
     "nodemailer": "^2.6.4",
