@@ -23,7 +23,7 @@ var transport = nodemailer.createTransport({
 });
 
 router.use('/', function(req, res, next){
-	if(!req.session.token){
+	if(!req.user){
 		return res.redirect("/#/login");
 	}
 	next();
@@ -152,30 +152,56 @@ router.route("/registrar")
 	.post(function(req,res,next){
 		async.waterfall([
 			function(done){
-				connection.query("SELECT correo FROM usuarios WHERE correo=?",req.body.correo,function(err, usuario) {
+				var query = "SELECT user_id,correo,tokenExpires,registryPasswordToken FROM usuarios WHERE correo=? LIMIT 1";
+				connection.query(query,req.body.correo, function(err, usuario) {
 					if(usuario[0]) {
-						req.flash('error','Ya existe un usuario con este correo');
-						done(true);
+						if(usuario[0].tokenExpires>Date.now()) {
+							req.flash('error','Ya existe un usuario con este correo');
+							done(true);
+						} else {
+							var tokenExpires = Date.now() + 32400000 //9 horas activo
+							done(err,tokenExpires,usuario[0].registryPasswordToken,usuario[0].user_id);
+						}
 					} else {
 						crypto.randomBytes(20,function(err,buf){
 							var token = buf.toString('hex');
-							done(err,token);
+							done(err,0,token,0);
 						});
 					}
 				});
 			},
-			function(token,done){
-				var tokenExpires = Date.now() + 32400000 //9 horas activo
-				user={
-					correo:req.body.correo,
-					registryPasswordToken:token,
-					tokenExpires:tokenExpires
+			function(tokenExpires,token,user_id,done){
+				if(tokenExpires !== 0) {
+					var user={
+						correo:req.body.correo,
+						registryPasswordToken:token,
+						tokenExpires:tokenExpires
+					}
+					var query = "UPDATE usuarios SET ? WHERE user_id=?";
+					connection.query(query,[user,user_id],function(err){
+						done(err,user);
+						//Enviamos al usuario como parametro 'token' de la siguiente funcion
+					});
+				} else {
+					done(null,token);
 				}
-				connection.query("insert into usuarios (correo,registryPasswordToken,tokenExpires) values(?,?,?)",
-					[user.correo,user.registryPasswordToken,user.tokenExpires],function(err){
+			},
+			function(token,done){
+				if(token.correo) {
+					done(null,token.registryPasswordToken,token);
+				} else {
+					var tokenExpires = Date.now() + 32400000 //9 horas activo
+					var user={
+						correo:req.body.correo,
+						registryPasswordToken:token,
+						tokenExpires:tokenExpires
+					}
+					connection.query("INSERT INTO usuarios SET ?",user,function(err){
 						done(err,token,user);
-				});
-			},function(token,user,done){
+					});
+				}
+			},
+			function(token,user,done){
 				var mailOptions={
 					to: user.correo,
 					from: config.mailUser,
@@ -195,7 +221,7 @@ router.route("/registrar")
 					}
 				});
 			}
-		],function (err){
+		],function (err,result){
 			if(err) {
 				console.log(err);
 				res.redirect('/app/#/app');

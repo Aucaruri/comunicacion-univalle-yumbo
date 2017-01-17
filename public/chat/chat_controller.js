@@ -19,7 +19,7 @@
 
 		vm.usuarios = [];
 		vm.usuario = {};
-		vm.mensajes = [];
+		vm.mensajes = undefined;
 		vm.mensaje = undefined;
 		vm.conversacion_id = undefined;
 		vm.getAllMessages = getAllMessages;

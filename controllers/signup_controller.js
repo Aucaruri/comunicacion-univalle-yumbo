@@ -41,9 +41,12 @@ router.post("/:token",function(req,res){
 				var query = "SELECT user_id, correo " +
 					"FROM usuarios WHERE registryPasswordToken=? AND tokenExpires > ?";
 				connection.query(query,[req.params.token,Date.now()],function(err, user){
+					if (err) {
+						callback(true,err);
+					}
 					if (!user[0]) {
 						req.flash('error', 'El link para registrarse es invalido o ha caducado.');
-						deferred.reject(err);
+						callback(true);
 					}
 					var usuario = {
 						user_id: user[0].user_id,
@@ -66,11 +69,10 @@ router.post("/:token",function(req,res){
 				var queryUpdate = "UPDATE usuarios SET ? WHERE user_id=?";
 				connection.query(queryUpdate,[user,user.user_id],function(err){
 					if(err) {
-						console.log(err);
 						req.flash('error','Error al ingresar los datos al sistema.');
-						return res.redirect('/');
+						callback(true,err);
 					}
-					callback(usuario,callback);
+					callback(err,user);
 				});
 			},
 			function(usuario,callback) {
@@ -81,26 +83,29 @@ router.post("/:token",function(req,res){
 						connection.query("INSERT INTO conversaciones (user_1_id,user_2_id) VALUES (?,?)",[usuario.user_id,user.user_id],
 							function(err,result){
 								if(err) {
-									console.log(err);
 									req.flash('error','Error al ingresar los datos al sistema.');
-									return res.redirect('/');
+									callback(true,err);
 								}
 								callb();
 							});
 					}, function(err){
 						if(err) {
-							console.log(err);
 							req.flash('error','Error al ingresar los datos al sistema.');
-							return res.redirect('/');
+							callback(true,err);
 						}
-						callback(err);
+						callback(err,usuario);
 					});
 				});
 			}
 		], function(err, result) {
+			if(err) {
+				console.log(err);
+				console.log(result);
+				return res.redirect('/#/home');
+			}
 			// Regresa a la página principal con el mensaje de bienvenida
-			req.logIn(usuario, function(err){
-				req.flash('success','¡Bienvenido(a) al sistema ' + usuario.nombres + '!');
+			req.logIn(result, function(err){
+				req.flash('success','¡Bienvenido(a) al sistema ' + result.nombres + '!');
 				return res.redirect('/app/#/app');
 			});
 		});
