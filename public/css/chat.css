@@ -31,7 +31,7 @@
 	height:0;
 	border-style:solid;
 }
-.message-wrapper.remitente .circular, .message-wrapper.remitente .text-wrapper {
+.message-wrapper.remitente .circular-chat, .message-wrapper.remitente .text-wrapper {
 	float:right;
 	color:#fff;
 }
@@ -45,7 +45,7 @@
 	top:0;
 	right:-9px;
 }
-.message-wrapper.receptor .circular,.message-wrapper.receptor .text-wrapper {
+.message-wrapper.receptor .circular-chat,.message-wrapper.receptor .text-wrapper {
 	float:left;
 	color:#000
 }
@@ -96,6 +96,10 @@
 }
 ul.list{
 	padding-left: 0;
+}
+.spinner{
+	width:100%;
+	padding: 15px 0 15px 0;
 }
 @media screen and (max-width: 839px){
 	div.mdl-list{

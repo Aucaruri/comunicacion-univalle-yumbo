@@ -107,6 +107,9 @@
 				templateUrl: '/public/profile/editar_usuario.html',
 				controller: 'editar_usuario_controller',
 				controllerAs: 'vm'
+			})
+			.when('/about', {
+				templateUrl: '/public/about/about.html'
 			});
 	}
 

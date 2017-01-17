@@ -18,6 +18,7 @@
 				.then(function(evento){
 					vm.evento = evento;
 					vm.nombreImagen = vm.evento.imagen.split('/')[4];
+					console.log(vm.evento);
 				})
 				.catch(function(err){
 					console.log(err);

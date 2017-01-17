@@ -79,7 +79,8 @@
 		function addMessage(){
 			var mensaje = {
 				remitente:vm.usuario.user_id,
-				mensaje:vm.mensaje
+				mensaje:vm.mensaje,
+				creacion: new Date()
 			};
 			var message = {
 				remitente:vm.usuario.user_id,
@@ -87,7 +88,8 @@
 				nombres:vm.usuario.nombres,
 				apellidos:vm.usuario.apellidos,
 				foto_perfil:vm.usuario.foto_perfil,
-				receptor:vm.receptor.user_id
+				receptor:vm.receptor.user_id,
+				creacion: new Date()
 			};
 			ChatService.addMessage(vm.conversacion_id,mensaje)
 				.then(function(){

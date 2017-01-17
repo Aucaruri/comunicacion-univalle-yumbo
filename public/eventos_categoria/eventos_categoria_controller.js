@@ -8,8 +8,8 @@
     function Controller(EventService,UserService,$routeParams){
     	var vm = this;
         vm.categoria = $routeParams.categoria;
-        vm.eventos = [];
-        vm.usuario = {};
+        vm.eventos = undefined;
+        vm.usuario = undefined;
         vm.title = "";
         if(vm.categoria == 1){
             vm.title = "extracurriculares";

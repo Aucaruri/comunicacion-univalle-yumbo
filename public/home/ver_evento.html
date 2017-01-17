@@ -1,12 +1,14 @@
-<div class="mdl-grid" ng-if="vm.usuario">
-	<div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--hide-phone"></div>
-	<div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-		<a href="#/app/modificar_evento/{{vm.evento.evento_id}}">
-			<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent f-right" id="button">
-				<i class="material-icons">create</i>
-				Editar evento
-			</button>
-		</a>
+<div ng-show="vm.usuario">
+	<div class="mdl-grid" ng-if="vm.usuario.user_id === vm.evento.usuario">
+		<div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--hide-phone"></div>
+		<div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+			<a href="#/app/modificar_evento/{{vm.evento.evento_id}}">
+				<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent f-right" id="button">
+					<i class="material-icons">create</i>
+					Editar evento
+				</button>
+			</a>
+		</div>
 	</div>
 </div>
 <div class="mdl-grid">

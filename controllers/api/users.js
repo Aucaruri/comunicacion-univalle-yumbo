@@ -35,8 +35,7 @@ exports.getById=function(id){
 				"FROM usuarios WHERE user_id=? LIMIT 1";
 	connection.query(query, id, function(err, usuario){
 		if(err) deferred.reject(err.name + ": " + err.message);
-
-		if(usuario[0]) {
+		if(usuario) {
 			deferred.resolve(usuario[0]);
 		} else {
 			deferred.resolve();

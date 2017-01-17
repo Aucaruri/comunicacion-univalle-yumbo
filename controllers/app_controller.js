@@ -109,20 +109,32 @@ router.route("/eventos/:id")
 				actualizar(result.url);
 			}, { public_id: req.body.titulo } );
 		}else{
-			var route = "/public/imagenes/eventos/"+req.body.imagen;
+			var route = "";
 			actualizar(route);
 		}
 		function actualizar(route){
-			var evento={
-				titulo:req.body.titulo,
-				fecha_inicio:req.body.fecha_inicial,
-				fecha_final:req.body.fecha_final,
-				descripcion:req.body.descripcion,
-				lugar:req.body.lugar,
-				categoria:req.body.categoria,
-				usuario:req.user.user_id,
-				imagen:route
-			};
+			if(route!=="") {
+				var evento={
+					titulo:req.body.titulo,
+					fecha_inicio:req.body.fecha_inicial,
+					fecha_final:req.body.fecha_final,
+					descripcion:req.body.descripcion,
+					lugar:req.body.lugar,
+					categoria:req.body.categoria,
+					usuario:req.user.user_id,
+					imagen:route
+				};
+			} else {
+				var evento={
+					titulo:req.body.titulo,
+					fecha_inicio:req.body.fecha_inicial,
+					fecha_final:req.body.fecha_final,
+					descripcion:req.body.descripcion,
+					lugar:req.body.lugar,
+					categoria:req.body.categoria,
+					usuario:req.user.user_id
+				};
+			}
 			connection.query("UPDATE eventos SET ? WHERE evento_id=?",[evento,req.params.id],function(err){
 				if(err) {
 					console.log(err);
@@ -195,30 +207,42 @@ router.route("/registrar")
 
 router.put("/update_user",function(req,res) {
 	if(req.body.archivo.name != ''){
-		var ruta = "public/imagenes/profile/"+req.body.archivo.name;
+		/*var ruta = "public/imagenes/profile/"+req.body.archivo.name;
 		var route = "/public/imagenes/profile/"+req.body.archivo.name;
 		fs.rename(req.body.archivo.path, ruta, function(err){
 			if(err) console.log(err);
-		});
+		});*/
+		cloudinary.uploader.upload(req.body.archivo.path, function(result) {
+			actualizar(result.url);
+		}, { public_id: req.body.titulo } );
 	}else{
-		var route = "/public/imagenes/profile/"+req.body.imagen;
+		var route = "";
+		actualizar(route);
 	}
-
-	var usuario = {
-		nombres:req.body.nombres,
-		apellidos:req.body.apellidos,
-		foto_perfil:route
-	};
-
-	connection.query("UPDATE usuarios SET ? WHERE user_id=?",[usuario,req.user.user_id],function (err) {
-		if (err) {
-			console.log(err);
-			req.flash('error',"No se pudo modificar el usuario");
-			return res.redirect('/#/app/perfil');
+	function actualizar(route){
+		if(route!=="") {
+			var usuario = {
+				nombres:req.body.nombres,
+				apellidos:req.body.apellidos,
+				foto_perfil:route
+			};
+		} else {
+			var usuario = {
+				nombres:req.body.nombres,
+				apellidos:req.body.apellidos
+			};
 		}
-		req.flash('success','¡Usuario modificado!');
-		return res.redirect('/#/app/perfil');
-	});
+		var query = "UPDATE usuarios SET ? WHERE user_id=?";
+		connection.query(query,[usuario,req.user.user_id],function (err) {
+			if (err) {
+				console.log(err);
+				req.flash('error',"No se pudo modificar el usuario");
+				return res.redirect('/#/app/perfil');
+			}
+			req.flash('success','¡Usuario modificado!');
+			return res.redirect('/#/app/perfil');
+		});
+	}
 });
 
 module.exports = router;

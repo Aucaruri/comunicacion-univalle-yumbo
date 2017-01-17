@@ -26,8 +26,8 @@
 
 		var vm = this;
 
-		vm.eventosSlider = [];
-		vm.eventos = [];
+		vm.eventosSlider = undefined;
+		vm.eventos = undefined;
 		
 		initController();
 

@@ -11,7 +11,7 @@
 			reconnection: false
 		});
 
-		vm.eventos = [];
+		vm.eventos = undefined;
 		vm.evento = {};
 		vm.usuario = {};
 		vm.deleteEvent = deleteEvent;

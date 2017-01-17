@@ -1,7 +1,13 @@
 <div ng-show="vm.eventosSlider.length > 0">
 	<slider eventos="vm.eventosSlider"></slider>
 </div>
-<div ng-show = "vm.eventos.length == 0">
+<div ng-hide = "vm.eventos">
+	<div class="mdl-grid m-t-50">
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone"></div>
+		<div class="mdl-spinner mdl-js-spinner is-active"></div>
+	</div>
+</div>
+<div ng-show = "vm.eventos.length === 0">
 	<div class="mdl-grid">
 		<div class="mdl-cell mdl-cell--3-col mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
 		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-color--blue-grey-100 mdl-card mdl-shadow--2dp m-t-40">

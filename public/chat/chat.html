@@ -6,6 +6,10 @@
 				Conversaciones
 			</h3>
 			<div class="mdl-shadow--2dp">
+				<div class="mdl-grid spinner" ng-show="vm.usuarios.length===0">
+					<div class="mdl-cell--6-col"></div>
+					<div class="mdl-spinner mdl-js-spinner" ng-class="{'is-active': vm.usuarios.length===0}"></div>
+				</div>
 				<ul class="list">
 					<div class="demo-list-action mdl-list" ng-repeat="usuario in vm.usuarios">
 						<div ng-click="vm.getAllMessages(usuario.conversacion_id,usuario)">
@@ -32,16 +36,21 @@
 					<div ng-if="!vm.receptor" class="mdl-grid">
 						<div class="mdl-cell mdl-cell--3-col mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
 						<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-color--blue-grey-100 mdl-card mdl-shadow--2dp m-t-5">
-							<div class="mdl-card__title" style="text-align:center;">
+							<div class="mdl-card__title t-center">
 								<h2 style="font-size:30px;"> Seleccione una conversación para empezar</h2>
 							</div>
 						</div>
 					</div>
+					<div class="mdl-grid spinner" ng-show="vm.mensajes.length===0 && vm.receptor">
+						<div class="mdl-cell--6-col"></div>
+						<div class="mdl-spinner mdl-js-spinner" ng-class="{'is-active': vm.mensajes.length===0}"></div>
+					</div>
 					<div ng-if="vm.receptor !== 0" class="message-wrapper" ng-repeat="mensaje in vm.mensajes" ng-class="{remitente: vm.usuario.user_id === mensaje.remitente, receptor: vm.usuario.user_id !== mensaje.remitente}">
-						<div class="circular" back-img="{{mensaje.foto_perfil}}"></div>
+						<div class="circular-chat" back-img="{{mensaje.foto_perfil}}"></div>
 						<div class="text-wrapper mdl-shadow--0dp">
 								<span> {{mensaje.mensaje}} </span>
 						</div>
+						<div class="f11 mdl-color-text--grey-700 m-h-20 clear" ng-class="{'t-right': vm.usuario.user_id !== mensaje.remitente}">{{mensaje.creacion | date:'medium'}}</div>
 					</div>
 				</div>
 				<div class="chat-input mdl-card--border">

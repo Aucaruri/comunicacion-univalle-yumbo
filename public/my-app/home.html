@@ -16,7 +16,13 @@
 		</a>
 	</div>
 </div>
-<main ng-if = "vm.eventos.length == 0">
+<div ng-hide = "vm.eventos">
+	<div class="mdl-grid m-t-50">
+		<div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone"></div>
+		<div class="mdl-spinner mdl-js-spinner is-active"></div>
+	</div>
+</div>
+<div ng-if = "vm.eventos.length === 0">
 	<div class="mdl-grid">
 		<div class="mdl-cell mdl-cell--3-col mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
 		<div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-color--blue-grey-100 mdl-card mdl-shadow--2dp m-t-40">
@@ -25,8 +31,8 @@
 			</div>
 		</div>
 	</div>
-</main>
-<main ng-if = "vm.eventos.length > 0">
+</div>
+<div ng-if = "vm.eventos.length > 0">
 	<div class="mdl-grid">
 		<div class="mdl-card mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-shadow--2dp" ng-repeat="evento in vm.eventos">
 			<figure class="mdl-card__media relative">
@@ -57,7 +63,7 @@
 			</div>
 		</div>
 	</div>
-</main>
+</div>
 <script type="text/ng-template" id="deleteDialog">
 	<h4 class="mdl-dialog__title">¿Seguro que quiere eliminar el evento?</h4>
 	<div class="mdl-dialog__content">

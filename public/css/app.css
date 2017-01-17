@@ -92,27 +92,24 @@ a{text-decoration: none;}
 	overflow: hidden;
 	transition: all 0.5s; 
 }
-.menu-footer{
-	color: #000;
-	position: absolute;
-	bottom: 15px;
-}
-.menu-footer p{
-	margin: 0;
-	padding: 0;
-}
 
 /*clases para las fotos circulares*/
 .circular{
 	border-radius: 50%;
 	width: 55px;
-	height:55px;
+	height: 55px;
+	display: block;
+}
+.circular-chat{
+	border-radius: 50%;
+	width: 47px;
+	height: 47px;
 	display: block;
 }
 .circular-grande{
 	border-radius: 50%;
 	width: 255px;
-	height:255px;
+	height: 255px;
 	display: block;
 }
 

@@ -193,8 +193,8 @@ exports.getCategoryEvents=function(id){
 exports.getById=function(id){
 	var deferred = Q.defer();
 
-	var query = "SELECT a.evento_id, a.titulo,a.imagen,a.fecha_inicio,a.fecha_final,"+
-				"a.descripcion,a.lugar,a.categoria,b.nombre as nombre_categoria,a.estado "+
+	var query = "SELECT a.evento_id,a.titulo,a.imagen,a.fecha_inicio,a.fecha_final,"+
+				"a.descripcion,a.lugar,a.categoria,b.nombre as nombre_categoria,a.estado,a.usuario "+
 				"FROM eventos a INNER JOIN categorias b ON a.categoria=b.categoria_id "+
 				"WHERE a.evento_id=? AND a.estado=1";
 	connection.query(query,id,function(err, evento){

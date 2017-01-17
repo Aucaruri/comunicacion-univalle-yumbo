@@ -27,12 +27,13 @@ exports.getAllMessages=function(id){
 //Postear un mensaje
 exports.addMessage=function(form,conversacion_id){
 	var deferred = Q.defer();
-
+	console.log(form.creacion)
 	var mensaje={
 		remitente:form.remitente,
 		mensaje:form.mensaje,
 		conversacion_id:conversacion_id,
-		leido: 1
+		leido: 1,
+		creacion: form.creacion
 	}
 
 	connection.query("INSERT INTO mensajes SET ?",mensaje,function(err){
