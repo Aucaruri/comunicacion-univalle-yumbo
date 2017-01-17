@@ -1,5 +1,6 @@
 var express = require("express");
 var path = require('path');
+var favicon = require('serve-favicon');
 var logger = require("morgan");
 var jwt = require('jsonwebtoken');
 var cookieParser = require("cookie-parser");
@@ -54,6 +55,7 @@ realtime(server);
 app.set('port', process.env.PORT || 8080);
 app.set("view engine","jade");
 app.use("/public",express.static('public'));
+app.use(favicon(path.join(__dirname,'public/imagenes/favicon.ico')));
 app.use('/datetimepicker', express.static(path.join(__dirname,'node_modules/angular-moment-picker')));
 app.use('/ng-dialog', express.static(path.join(__dirname,'node_modules/ng-dialog')));
 app.use(logger("dev"));
