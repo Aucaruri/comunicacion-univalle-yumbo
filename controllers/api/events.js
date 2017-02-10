@@ -14,34 +14,7 @@ exports.getAllEvents=function(){
 		function(err,eventos){
 			if (err) deferred.reject(err.name + ': ' + err.message);
 			if(eventos) {
-				for (var i = eventos.length - 1; i >= 0; i--) {
-					if(eventos[i].fecha_inicio.toString() !== '0000-00-00 00:00:00'){
-						var ano = eventos[i].fecha_inicio.getYear()+1900;
-						var mes = eventos[i].fecha_inicio.getMonth()+1;
-						var dia = eventos[i].fecha_inicio.getDate();
-						var hora = eventos[i].fecha_inicio.getHours();
-						var minutos = eventos[i].fecha_inicio.getMinutes();
-						if(mes<10){mes='0'+mes}
-						if(dia<10){dia='0'+dia}
-						if(hora<10){hora='0'+hora}
-						if(minutos<10){minutos='0'+minutos}
-						eventos[i].fecha_inicio = ano+'/'+mes+'/'+dia+' '+hora+':'+minutos;
-					}
-				};
-				for (var i = eventos.length - 1; i >= 0; i--) {
-					if(eventos[i].fecha_final.toString() !== '0000-00-00 00:00:00'){
-						var ano = eventos[i].fecha_final.getYear()+1900;
-						var mes = eventos[i].fecha_final.getMonth()+1;
-						var dia = eventos[i].fecha_final.getDate();
-						var hora = eventos[i].fecha_final.getHours();
-						var minutos = eventos[i].fecha_final.getMinutes();
-						if(mes<10){mes='0'+mes}
-						if(dia<10){dia='0'+dia}
-						if(hora<10){hora='0'+hora}
-						if(minutos<10){minutos='0'+minutos}
-						eventos[i].fecha_final = ano+'/'+mes+'/'+dia+' '+hora+':'+minutos;
-					}
-				};
+				eventos = formatDates(eventos);
 				deferred.resolve(eventos);
 			} else {
 				deferred.resolve();
@@ -62,34 +35,7 @@ exports.getHomeEvents=function(){
 		function(err,eventos){
 			if (err) deferred.reject(err.name + ': ' + err.message);
 			if(eventos) {
-				for (var i = eventos.length - 1; i >= 0; i--) {
-					if(eventos[i].fecha_inicio.toString() !== '0000-00-00 00:00:00'){
-						var ano = eventos[i].fecha_inicio.getYear()+1900;
-						var mes = eventos[i].fecha_inicio.getMonth()+1;
-						var dia = eventos[i].fecha_inicio.getDate();
-						var hora = eventos[i].fecha_inicio.getHours();
-						var minutos = eventos[i].fecha_inicio.getMinutes();
-						if(mes<10){mes='0'+mes}
-						if(dia<10){dia='0'+dia}
-						if(hora<10){hora='0'+hora}
-						if(minutos<10){minutos='0'+minutos}
-						eventos[i].fecha_inicio = ano+'/'+mes+'/'+dia+' '+hora+':'+minutos;
-					}
-				};
-				for (var i = eventos.length - 1; i >= 0; i--) {
-					if(eventos[i].fecha_final.toString() !== '0000-00-00 00:00:00'){
-						var ano = eventos[i].fecha_final.getYear()+1900;
-						var mes = eventos[i].fecha_final.getMonth()+1;
-						var dia = eventos[i].fecha_final.getDate();
-						var hora = eventos[i].fecha_final.getHours();
-						var minutos = eventos[i].fecha_final.getMinutes();
-						if(mes<10){mes='0'+mes}
-						if(dia<10){dia='0'+dia}
-						if(hora<10){hora='0'+hora}
-						if(minutos<10){minutos='0'+minutos}
-						eventos[i].fecha_final = ano+'/'+mes+'/'+dia+' '+hora+':'+minutos;
-					}
-				};
+				eventos = formatDates(eventos);
 				deferred.resolve(eventos);
 			} else {
 				deferred.resolve();
@@ -107,34 +53,7 @@ exports.getSliderEvents=function(){
 		function(err,eventos){
 			if (err) deferred.reject(err.name + ': ' + err.message);
 			if(eventos) {
-				for (var i = eventos.length - 1; i >= 0; i--) {
-					if(eventos[i].fecha_inicio.toString() !== '0000-00-00 00:00:00'){
-						var ano = eventos[i].fecha_inicio.getYear()+1900;
-						var mes = eventos[i].fecha_inicio.getMonth()+1;
-						var dia = eventos[i].fecha_inicio.getDate();
-						var hora = eventos[i].fecha_inicio.getHours();
-						var minutos = eventos[i].fecha_inicio.getMinutes();
-						if(mes<10){mes='0'+mes}
-						if(dia<10){dia='0'+dia}
-						if(hora<10){hora='0'+hora}
-						if(minutos<10){minutos='0'+minutos}
-						eventos[i].fecha_inicio = ano+'/'+mes+'/'+dia+' '+hora+':'+minutos;
-					}
-				};
-				for (var i = eventos.length - 1; i >= 0; i--) {
-					if(eventos[i].fecha_final.toString() !== '0000-00-00 00:00:00'){
-						var ano = eventos[i].fecha_final.getYear()+1900;
-						var mes = eventos[i].fecha_final.getMonth()+1;
-						var dia = eventos[i].fecha_final.getDate();
-						var hora = eventos[i].fecha_final.getHours();
-						var minutos = eventos[i].fecha_final.getMinutes();
-						if(mes<10){mes='0'+mes}
-						if(dia<10){dia='0'+dia}
-						if(hora<10){hora='0'+hora}
-						if(minutos<10){minutos='0'+minutos}
-						eventos[i].fecha_final = ano+'/'+mes+'/'+dia+' '+hora+':'+minutos;
-					}
-				};
+				eventos = formatDates(eventos);
 				deferred.resolve(eventos);
 			} else {
 				deferred.resolve();
@@ -152,34 +71,7 @@ exports.getCategoryEvents=function(id){
 		function(err,eventos){
 			if (err) deferred.reject(err.name + ': ' + err.message);
 			if(eventos) {
-				for (var i = eventos.length - 1; i >= 0; i--) {
-					if(eventos[i].fecha_inicio.toString() !== '0000-00-00 00:00:00'){
-						var ano = eventos[i].fecha_inicio.getYear()+1900;
-						var mes = eventos[i].fecha_inicio.getMonth()+1;
-						var dia = eventos[i].fecha_inicio.getDate();
-						var hora = eventos[i].fecha_inicio.getHours();
-						var minutos = eventos[i].fecha_inicio.getMinutes();
-						if(mes<10){mes='0'+mes}
-						if(dia<10){dia='0'+dia}
-						if(hora<10){hora='0'+hora}
-						if(minutos<10){minutos='0'+minutos}
-						eventos[i].fecha_inicio = ano+'/'+mes+'/'+dia+' '+hora+':'+minutos;
-					}
-				};
-				for (var i = eventos.length - 1; i >= 0; i--) {
-					if(eventos[i].fecha_final.toString() !== '0000-00-00 00:00:00'){
-						var ano = eventos[i].fecha_final.getYear()+1900;
-						var mes = eventos[i].fecha_final.getMonth()+1;
-						var dia = eventos[i].fecha_final.getDate();
-						var hora = eventos[i].fecha_final.getHours();
-						var minutos = eventos[i].fecha_final.getMinutes();
-						if(mes<10){mes='0'+mes}
-						if(dia<10){dia='0'+dia}
-						if(hora<10){hora='0'+hora}
-						if(minutos<10){minutos='0'+minutos}
-						eventos[i].fecha_final = ano+'/'+mes+'/'+dia+' '+hora+':'+minutos;
-					}
-				};
+				eventos = formatDates(eventos);
 				deferred.resolve(eventos);
 			} else {
 				deferred.resolve();
@@ -201,7 +93,7 @@ exports.getById=function(id){
 		if (err) deferred.reject(err.name + ': ' + err.message);
 		if(evento[0]) {
 			evento[0].categoria = evento[0].categoria.toString();
-			if(evento[0].fecha_inicio.toString() !== '0000-00-00 00:00:00'){
+			/*if(evento[0].fecha_inicio.toString() !== '0000-00-00 00:00:00'){
 				var ano = evento[0].fecha_inicio.getYear()+1900;
 				var mes = evento[0].fecha_inicio.getMonth()+1;
 				var dia = evento[0].fecha_inicio.getDate();
@@ -224,8 +116,7 @@ exports.getById=function(id){
 				if(hora<10){hora='0'+hora}
 				if(minutos<10){minutos='0'+minutos}
 				evento[0].fecha_final = ano+'/'+mes+'/'+dia+' '+hora+':'+minutos;
-			}
-			
+			}*/
 			deferred.resolve(evento[0]);
 		} else {
 			deferred.resolve();
@@ -246,34 +137,7 @@ exports.getUserEvents=function(id){
 	connection.query(query, id, function(err, eventos) {
 		if (err) deferred.reject(err.name + ': ' + err.message);
 		if(eventos) {
-			for (var i = eventos.length - 1; i >= 0; i--) {
-				if(eventos[i].fecha_inicio.toString() !== '0000-00-00 00:00:00'){
-					var ano = eventos[i].fecha_inicio.getYear()+1900;
-					var mes = eventos[i].fecha_inicio.getMonth()+1;
-					var dia = eventos[i].fecha_inicio.getDate();
-					var hora = eventos[i].fecha_inicio.getHours();
-					var minutos = eventos[i].fecha_inicio.getMinutes();
-					if(mes<10){mes='0'+mes}
-					if(dia<10){dia='0'+dia}
-					if(hora<10){hora='0'+hora}
-					if(minutos<10){minutos='0'+minutos}
-					eventos[i].fecha_inicio = ano+'/'+mes+'/'+dia+' '+hora+':'+minutos;
-				}
-			};
-			for (var i = eventos.length - 1; i >= 0; i--) {
-				if(eventos[i].fecha_final.toString() !== '0000-00-00 00:00:00'){
-					var ano = eventos[i].fecha_final.getYear()+1900;
-					var mes = eventos[i].fecha_final.getMonth()+1;
-					var dia = eventos[i].fecha_final.getDate();
-					var hora = eventos[i].fecha_final.getHours();
-					var minutos = eventos[i].fecha_final.getMinutes();
-					if(mes<10){mes='0'+mes}
-					if(dia<10){dia='0'+dia}
-					if(hora<10){hora='0'+hora}
-					if(minutos<10){minutos='0'+minutos}
-					eventos[i].fecha_final = ano+'/'+mes+'/'+dia+' '+hora+':'+minutos;
-				}
-			};
+			eventos = formatDates(eventos);
 			deferred.resolve(eventos);
 		} else {
 			deferred.resolve();
@@ -328,4 +192,38 @@ exports.getAndroidEvents=function(){
 		});
 
 	return deferred.promise;
+};
+
+function formatDates(eventos) {
+	for (var i = eventos.length - 1; i >= 0; i--) {
+		if(eventos[i].fecha_inicio.toString() !== '0000-00-00 00:00:00'){
+			var ano = eventos[i].fecha_inicio.getYear()+1900;
+			var mes = eventos[i].fecha_inicio.getMonth()+1;
+			var dia = eventos[i].fecha_inicio.getDate();
+			var hora = eventos[i].fecha_inicio.getHours();
+			var minutos = eventos[i].fecha_inicio.getMinutes();
+			var segundos = eventos[i].fecha_inicio.getSeconds();
+			if(mes<10){mes='0'+mes}
+			if(dia<10){dia='0'+dia}
+			if(hora<10){hora='0'+hora}
+			if(minutos<10){minutos='0'+minutos}
+			if(segundos<10){segundos='0'+segundos}
+			eventos[i].fecha_inicio = ano+'-'+mes+'-'+dia+' '+hora+':'+minutos+':'+segundos;
+		}
+	};
+	for (var i = eventos.length - 1; i >= 0; i--) {
+		if(eventos[i].fecha_final.toString() !== '0000-00-00 00:00:00'){
+			var ano = eventos[i].fecha_final.getYear()+1900;
+			var mes = eventos[i].fecha_final.getMonth()+1;
+			var dia = eventos[i].fecha_final.getDate();
+			var hora = eventos[i].fecha_final.getHours();
+			var minutos = eventos[i].fecha_final.getMinutes();
+			if(mes<10){mes='0'+mes}
+			if(dia<10){dia='0'+dia}
+			if(hora<10){hora='0'+hora}
+			if(minutos<10){minutos='0'+minutos}
+			eventos[i].fecha_final = ano+'/'+mes+'/'+dia+' '+hora+':'+minutos;
+		}
+	};
+	return eventos;
 };
